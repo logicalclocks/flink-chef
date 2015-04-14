@@ -1,54 +1,44 @@
+libpath = File.expand_path '../../../kagent/libraries', __FILE__
 
-# directory node[:flink][:home] do
-#   owner node[:flink][:user]
-#   group node[:flink][:user]
-#   mode "755"
-#   action :create
-#   recursive true
-# end
+master_ip = private_recipe_ip("flink","jobmanager")
 
+user node[:flink][:user] do
+  supports :manage_home => true
+  action :create
+  home "/home/#{node[:flink][:user]}"
+  system true
+  shell "/bin/bash"
+  not_if "getent passwd #{node[:flink]['user']}"
+end
 
-    ark "flink" do
-      url node[:flink][:url]
-      version node[:flink][:version]
-      path node[:flink][:home]
-      home_dir "#{node[:flink][:dir]}/flink"
- #     checksum  "#{node[:flink][:checksum]}"
-      append_env_path true
-      owner "#{node[:flink][:user]}"
-    end
+group node[:hadoop][:group] do
+  action :modify
+  members ["#{node[:flink][:user]}"]
+  append true
+end
 
+ark "flink" do
+  url node[:flink][:url]
+  version node[:flink][:version]
+  path node[:flink][:home]
+  home_dir "#{node[:flink][:dir]}/flink"
+  #     checksum  "#{node[:flink][:checksum]}"
+  append_env_path true
+  owner "#{node[:flink][:user]}"
+end
 
-# package_url = node[:flink][:url]
-# base_package_filename = File.basename(package_url)
-# cached_package_filename = "#{Chef::Config[:file_cache_path]}/#{base_package_filename}"
+file "#{node[:flink][:home]}/conf/flink-conf.yaml" do 
+  owner node[:flink][:user]
+  action :delete
+end
 
-# remote_file cached_package_filename do
-#   source package_url
-#   owner "#{node[:flink][:user]}"
-#   mode "0644"
-#   action :create_if_missing
-# end
-
-#  bash 'extract-flink' do
-#    user "root"
-#          code <<-EOH
-#   set -e && set -o pipefail
-#   tar xfz #{cached_package_filename} -C #{node[:flink][:dir]}
-#   chown -R #{node[:flink][:user]} #{node[:flink][:home]}
-#   rm #{node[:flink][:home]}/conf/flink-conf.yaml
-#   touch #{node[:flink][:home]}/.flink_extracted_#{node[:flink][:version]}
-#          EOH
-#       not_if { ::File.exists?( "#{node[:flink][:home]}/.flink_extracted_#{node[:flink][:version]}" ) }
-#  end
 
 template "#{node[:flink][:home]}/conf/flink-conf.yaml" do
     source "flink-conf.yaml.erb"
     owner node[:flink][:user]
-    group node[:flink][:user]
+    group node[:hadoop][:group]
     mode 0775
+  variables({
+              :jobmanager_ip => master_ip
+            })
 end
-
-# link "#{node[:flink][:dir]}/flink" do
-#   to node[:flink][:home]
-# end

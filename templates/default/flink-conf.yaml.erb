@@ -21,7 +21,7 @@
 # Common
 #==============================================================================
 
-jobmanager.rpc.address: <%= node[:flink][:jobmanager][:rpc_addr] %>
+jobmanager.rpc.address: <%= @jobmanager_ip %>
 
 jobmanager.rpc.port: <%= node[:flink][:jobmanager][:rpc_port] %>
 
@@ -39,7 +39,7 @@ parallelization.degree.default: <%= node[:flink][:parallelization][:degree] %>
 
 jobmanager.web.port: <%= node[:flink][:jobmanager][:web_port] %>
 
-webclient.port: <%= node[:flink][:webclient][:port] %>
+webclient.port: <%= node[:flink][:webclient_port] %>
 
 #==============================================================================
 # Advanced
