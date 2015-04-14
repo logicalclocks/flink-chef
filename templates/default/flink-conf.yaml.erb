@@ -21,25 +21,25 @@
 # Common
 #==============================================================================
 
-jobmanager.rpc.address: <%= node[:jobmanager][:rpc][:address] %>
+jobmanager.rpc.address: <%= node[:flink][:jobmanager][:rpc_addr] %>
 
-jobmanager.rpc.port: <%= node[:jobmanager][:rpc][:port] %>
+jobmanager.rpc.port: <%= node[:flink][:jobmanager][:rpc_port] %>
 
-jobmanager.heap.mb: <%= node[:jobmanager][:heap][:mb] %>
+jobmanager.heap.mb: <%= node[:flink][:jobmanager][:heap_mbs] %>
 
-taskmanager.heap.mb: <%= node[:taskmanager][:heap][:mb] %>
+taskmanager.heap.mb: <%= node[:flink][:taskmanager][:heap_mbs] %>
 
-taskmanager.numberOfTaskSlots: <%= node[:taskmanager][:numberOfTaskSlots] %>
+taskmanager.num_taskslots: <%= node[:flink][:taskmanager][:num_taskslots] %>
 
-parallelization.degree.default: <%= node[:parallelization][:degree][:default] %>
+parallelization.degree.default: <%= node[:flink][:parallelization][:degree] %>
 
 #==============================================================================
 # Web Frontend
 #==============================================================================
 
-jobmanager.web.port: <%= node[:jobmanager][:web][:port] %>
+jobmanager.web.port: <%= node[:flink][:jobmanager][:web_port] %>
 
-webclient.port: <%= node[:webclient][:port] %>
+webclient.port: <%= node[:flink][:webclient][:port] %>
 
 #==============================================================================
 # Advanced
@@ -47,7 +47,7 @@ webclient.port: <%= node[:webclient][:port] %>
 
 # The number of buffers for the network stack.
 #
-taskmanager.network.numberOfBuffers: <%= node[:taskmanager][:network][:numberOfBuffers] %>
+taskmanager.network.numberOfBuffers: <%= node[:flink][:taskmanager][:network_num_buffers] %>
 
 # Directories for temporary files.
 #

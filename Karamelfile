@@ -1,0 +1,15 @@
+dependencies: 
+  - recipe: flink::install
+    local:
+      - hadoop::install
+  - recipe: flink::jobmanager
+    local:
+      - flink::install
+    global:  
+      - hadoop::dn
+  - recipe: flink::jobmanager
+    local:
+      - flink::install
+    global:  
+      - flink::jobmanager
+
