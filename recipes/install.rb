@@ -2,6 +2,10 @@ libpath = File.expand_path '../../../kagent/libraries', __FILE__
 
 master_ip = private_recipe_ip("flink","jobmanager")
 
+group node[:hadoop][:group] do
+  action :create
+end
+
 user node[:flink][:user] do
   supports :manage_home => true
   action :create
