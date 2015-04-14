@@ -6,7 +6,7 @@ action :start_jobmanager do
     user node[:hdfs][:user]
     code <<-EOF
      set -e
-     #{node[:flin][:home]}/bin/start-cluster.sh
+     #{node[:flink][:home]}/bin/start-cluster.sh
     EOF
   end
 
@@ -21,7 +21,7 @@ Chef::Log.info "Starting a taskmanager."
     user node[:hdfs][:user]
     code <<-EOF
      set -e
-     #{node[:flin][:home]}/bin/taskmanager.sh start
+     #{node[:flink][:home]}/bin/taskmanager.sh start
     EOF
   end
 
