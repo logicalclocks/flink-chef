@@ -45,6 +45,8 @@ webclient.port: <%= node[:flink][:webclient_port] %>
 # Advanced
 #==============================================================================
 
+env.pid.dir = <%= node[:flink][:pid_dir] %>
+
 # The number of buffers for the network stack.
 #
 taskmanager.network.numberOfBuffers: <%= node[:flink][:taskmanager][:network_num_buffers] %>

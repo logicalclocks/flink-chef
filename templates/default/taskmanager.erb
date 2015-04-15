@@ -1,0 +1,91 @@
+#!/bin/sh
+#
+# Startup script for the flink taskmanager
+#
+### BEGIN INIT INFO
+# Default-Start:                2 3 4 5
+# Default-Stop:                 0 1 6
+# Short-Description:            start and stop flink's taskmanager
+# Description:                  Start/Stop/Restart Flink's Taskmanager
+### END INIT INFO
+
+# Variables
+START_PROG=<%= "#{node[:flink][:home]}/bin/taskmanager.sh start" %>
+STOP_PROG=<%= "#{node[:flink][:home]}/bin/taskmanager.sh stop" %>
+
+EXEC_WITH_USER="su <%= node[:flink][:user] %> -l -c"
+
+RETVAL=0
+
+start() {
+  RUNNING=status
+  if [ $RUNNING -ne 0 ] ; then
+    echo "taskmanager is already running"
+    return 0
+  fi
+  echo "Executing : $START_PROG"
+  $EXEC_WITH_USER "$START_PROG"
+  return $?
+}
+
+stop() {
+  echo "Executing : $STOP_PROG"
+  $EXEC_WITH_USER "$STOP_PROG"
+  return $?
+}
+
+restart() {
+  $EXEC_WITH_USER "$STOP_PROG"
+  $EXEC_WITH_USER "$START_PROG"
+  return $?
+}
+
+status() {  
+  PID_FILE=<%= "#{node[:flink][:pid_dir]}/flink-#{node[:flink][:user]}-taskmanager.pid" %> 
+  if [ -f $PID_FILE ] ; then
+     PID=`cat $PID_FILE`
+     kill -0 $PID
+     res=$?
+  else 
+     res=1
+  fi
+  if [ $res -eq 0 ] ; then
+   echo "flink taskmanager ($PID) is running"
+  else
+   echo "flink taskmanager is not running"
+  fi
+  return $res
+
+}
+
+# user-supplied parameter to stop/start/restart process.
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    restart
+    ;;
+  reload)
+    restart
+    ;;
+  status)
+    status
+    ;;
+  -h|--help)
+    echo ""
+    echo "usage: <prog> start|stop|restart|status"
+    echo ""
+    exit 0
+    ;;
+  *)
+    echo $"Usage: <prog> {start|stop|restart|status}"
+    exit 1
+  esac
+
+
+exit $RETVAL
+

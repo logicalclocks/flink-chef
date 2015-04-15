@@ -22,8 +22,8 @@ default[:flink][:jobmanager][:rpc_port]            = 6123
 default[:flink][:jobmanager][:web_port]            = 8081
 default[:flink][:jobmanager][:heap_mbs]            = 256
 default[:flink][:taskmanager][:heap_mbs]           = 512
-default[:flink][:taskmanager][:num_taskslots]      = -1
-default[:flink][:parallelization][:degree]         = 1
+default[:flink][:taskmanager][:num_taskslots]      = node[:cpu][:total]
+default[:flink][:parallelization][:degree]         = node[:cpu][:total]
 default[:flink][:webclient_port]                   = 8888
 default[:flink][:taskmanager][:network_num_buffers]= 2048
 
@@ -31,3 +31,4 @@ default[:flink][:jobmanager][:public_ips]          = ['10.0.2.15']
 default[:flink][:jobmanager][:private_ips]         = ['10.0.2.15']
 default[:flink][:taskmanager][:public_ips]         = ['10.0.2.15']
 default[:flink][:taskmanager][:private_ips]        = ['10.0.2.15']
+default[:flink][:pid_dir]                          = "/tmp"
