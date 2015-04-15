@@ -12,3 +12,8 @@ dependencies:
       - flink::install
     global:  
       - flink::jobmanager
+  - recipe: flink::example
+    local:
+      - flink::install
+    global:  
+      - flink::taskmanager

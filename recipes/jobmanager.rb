@@ -39,3 +39,9 @@ template "/etc/init.d/jobmanager" do
 #  notifies :enable, resources(:service => "jobmanager")
   notifies :restart, resources(:service => "jobmanager"), :immediately
 end
+
+hadoop_hdfs_directory "/User/#{node[:flink][:user]}" do
+  action :create
+  owner node[:flink][:user]
+  mode "1775"
+end

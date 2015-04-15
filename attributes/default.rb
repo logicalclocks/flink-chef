@@ -22,8 +22,14 @@ default[:flink][:jobmanager][:rpc_port]            = 6123
 default[:flink][:jobmanager][:web_port]            = 8081
 default[:flink][:jobmanager][:heap_mbs]            = 256
 default[:flink][:taskmanager][:heap_mbs]           = 512
-default[:flink][:taskmanager][:num_taskslots]      = node[:cpu][:total]
-default[:flink][:parallelization][:degree]         = node[:cpu][:total]
+
+<% cpus = node[:cpu][:total] -%>
+<% if cpus < 1
+     cpus = 1
+   end
+-%>
+default[:flink][:taskmanager][:num_taskslots]      = cpus
+default[:flink][:parallelization][:degree]         = cpus
 default[:flink][:webclient_port]                   = 8888
 default[:flink][:taskmanager][:network_num_buffers]= 2048
 

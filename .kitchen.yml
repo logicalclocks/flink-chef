@@ -28,6 +28,7 @@ suites:
       - recipe[hadoop::dn]
       - recipe[flink::jobmanager]
       - recipe[flink::taskmanager]
+      - recipe[flink::example]
     attributes:
          hadoop:
             nn:
