@@ -28,7 +28,7 @@ suites:
       - recipe[hadoop::dn]
       - recipe[flink::jobmanager]
       - recipe[flink::taskmanager]
-      - recipe[flink::example]
+      - recipe[flink::wordcount]
     attributes:
          hadoop:
             nn:

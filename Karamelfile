@@ -12,7 +12,7 @@ dependencies:
       - flink::install
     global:  
       - flink::jobmanager
-  - recipe: flink::example
+  - recipe: flink::wordcount
     local:
       - flink::install
     global:  

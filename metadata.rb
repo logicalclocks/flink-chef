@@ -9,6 +9,7 @@ version          "1.0"
 recipe           "install", "Installs Apache Flink"
 recipe           "jobmanager",  "Starts a Flink JobManager in standalone mode"
 recipe           "taskmanager",   "Starts a Flink Slave in standalone mode"
+recipe           "wordcount",   "Prepares wordcount example using HDFS"
 
 depends          "hadoop"
 depends          "kagent"
