@@ -8,9 +8,7 @@ include_attribute "hadoop"
 default[:flink][:user]                             = "flink"
 default[:flink][:group]                            = node[:hadoop][:group]
 
-#default[:flink][:version]                          = "0.9.0-incubating-bin-hadoop2-yarn" 
-default[:flink][:version]                          = "0.8.1" 
-#default[:flink][:name]                             = "yarn-0.9.0-incubating" 
+default[:flink][:version]                          = "0.9.0" 
 default[:flink][:dir] 	                           = "/usr/local"
 default[:flink][:home]                             = "#{node[:flink][:dir]}/flink-#{node[:flink][:version]}"
 #default[:flink][:url]                              = "http://apache.mirrors.spacedump.net/flink/flink-#{node[:flink][:version]}/#{node[:flink][:version]}-bin-hadoop2.tgz"
