@@ -12,7 +12,7 @@ default[:flink][:version]                          = "0.9.0"
 default[:flink][:dir] 	                           = "/usr/local"
 default[:flink][:home]                             = "#{node[:flink][:dir]}/flink-#{node[:flink][:version]}"
 #default[:flink][:url]                              = "http://apache.mirrors.spacedump.net/flink/flink-#{node[:flink][:version]}/#{node[:flink][:version]}-bin-hadoop2.tgz"
-default[:flink][:url]                              = "#{node[:download_url]}/flink-#{node[:flink][:version]}-bin-hadoop2.tgz"
+default[:flink][:url]                              = "#{node[:download_url]}/flink-#{node[:flink][:version]}-bin-hadoop24.tgz"
 default[:flink][:checksum]                         = ""
 
 
