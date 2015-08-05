@@ -56,7 +56,7 @@ state.backend: jobmanager
 # Note: State backend must be accessible from the JobManager, use file://
 # only for local setups. 
 #
-state.backend.fs.checkpointdir: hdfs://<%= /User/#{node[:flink][:user]}/checkpoints %>
+state.backend.fs.checkpointdir: hdfs://User/<%= node[:flink][:user] %>/checkpoints 
 
 
 #==============================================================================
@@ -83,7 +83,7 @@ taskmanager.network.numberOfBuffers: <%= node[:flink][:taskmanager][:network_num
 # If not specified, the system-specific Java temporary directory (java.io.tmpdir
 # property) is taken.
 #
-# taskmanager.tmp.dirs: /tmp
+taskmanager.tmp.dirs: /tmp
 
 # Path to the Hadoop configuration directory.
 #
