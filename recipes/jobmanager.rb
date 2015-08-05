@@ -27,6 +27,9 @@ template "/etc/init.d/jobmanager" do
   owner node[:flink][:user]
   group node[:flink][:group]
   mode 0754
+  variables({
+              :mode => node[:flink][:jobmanager][:mode]
+            })
   notifies :enable, resources(:service => "jobmanager")
   notifies :restart, resources(:service => "jobmanager"), :immediately
 end

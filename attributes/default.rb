@@ -18,7 +18,7 @@ default[:flink][:conf_dir]                         = "#{node[:flink][:home]}/con
 
 default[:flink][:checksum]                         = ""
 
-
+default[:flink][:jobmanager][:mode]                = "batch"
 default[:flink][:jobmanager][:rpc_port]            = 6123
 default[:flink][:jobmanager][:web_port]            = 8081
 default[:flink][:jobmanager][:heap_mbs]            = 256
