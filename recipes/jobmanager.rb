@@ -38,7 +38,7 @@ hadoop_hdfs_directory "/User/#{node[:flink][:user]}" do
   mode "1775"
 end
 
-homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:user]}"
+homedir = node[:flink][:user].eql?("root") ? "/root" : node[:flink][:home]
 
 bash "generate-ssh-keypair-for-jobmgr" do
  user node[:flink][:user]

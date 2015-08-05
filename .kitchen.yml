@@ -21,11 +21,13 @@ suites:
 suites:
   - name: default
     run_list:
-      - recipe[kagent::install]
+      - recipe[apt::default]
       - recipe[hadoop::install]
       - recipe[flink::install]
       - recipe[hadoop::nn]
       - recipe[hadoop::dn]
+      - recipe[hadoop::rm]
+      - recipe[hadoop::nm]
       - recipe[flink::jobmanager]
       - recipe[flink::taskmanager]
       - recipe[flink::wordcount]

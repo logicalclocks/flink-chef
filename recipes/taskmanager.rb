@@ -14,6 +14,8 @@ template "/etc/init.d/taskmanager" do
   notifies :restart, resources(:service => "taskmanager")
 end
 
+homedir = node[:flink][:user].eql?("root") ? "/root" : node[:flink][:home]
+
 # Add the jobmanager hosts' public key, so that it can start/stop this node using passwordless ssh.
 # Dont append if the public key is already in the authorized_keys or is empty
 sshkey=node[:flink][:jobmanager][:public_key]

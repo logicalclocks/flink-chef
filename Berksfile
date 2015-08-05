@@ -6,3 +6,8 @@ cookbook 'java'
 cookbook 'kagent', github: 'karamelchef/kagent-chef'
 cookbook 'hadoop', github: 'hopshadoop/apache-hadoop-chef'
 cookbook 'ark'
+
+group :test do
+  cookbook 'apt'
+end
+
