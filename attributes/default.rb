@@ -8,13 +8,11 @@ include_attribute "hadoop"
 default[:flink][:user]                             = "flink"
 default[:flink][:group]                            = node[:hadoop][:group]
 
-#default[:flink][:version]                          = "0.9.0-incubating-bin-hadoop2-yarn" 
-default[:flink][:version]                          = "0.8.1" 
-#default[:flink][:name]                             = "yarn-0.9.0-incubating" 
-default[:flink][:dir] 	                           = "/usr/local"
+default[:flink][:version]                          = "0.9.0" 
+default[:flink][:hadoop_version]                   = "27"
+default[:flink][:dir]                              = "/srv"
 default[:flink][:home]                             = "#{node[:flink][:dir]}/flink-#{node[:flink][:version]}"
-#default[:flink][:url]                              = "http://apache.mirrors.spacedump.net/flink/flink-#{node[:flink][:version]}/#{node[:flink][:version]}-bin-hadoop2.tgz"
-default[:flink][:url]                              = "#{node[:download_url]}/flink-#{node[:flink][:version]}-bin-hadoop2.tgz"
+default[:flink][:url]                              = "http://apache.mirrors.spacedump.net/flink/flink-#{node[:flink][:version]}/#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}.tgz"
 default[:flink][:checksum]                         = ""
 
 
@@ -33,3 +31,5 @@ default[:flink][:jobmanager][:private_ips]         = ['10.0.2.15']
 default[:flink][:taskmanager][:public_ips]         = ['10.0.2.15']
 default[:flink][:taskmanager][:private_ips]        = ['10.0.2.15']
 default[:flink][:pid_dir]                          = "/tmp"
+
+default[:flink][:jobmanager][:public_key]          = ""
