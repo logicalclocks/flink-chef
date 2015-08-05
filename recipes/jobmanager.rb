@@ -42,6 +42,14 @@ hadoop_hdfs_directory "/User/#{node[:flink][:user]}" do
   mode "1775"
 end
 
+hadoop_hdfs_directory "/User/#{node[:flink][:user]}/checkpoints" do
+  action :create_as_superuser
+  owner node[:flink][:user]
+  group node[:flink][:group]
+  mode "1775"
+end
+
+
 homedir = node[:flink][:user].eql?("root") ? "/root" : node[:flink][:home]
 
 bash "generate-ssh-keypair-for-jobmgr" do
@@ -59,6 +67,6 @@ template "#{homedir}/.ssh/config" do
   mode 0664
 end
 
-flink_jobmgr "#{homedir}" do
+flink_jobmanager "#{homedir}" do
   action :return_publickey
 end
