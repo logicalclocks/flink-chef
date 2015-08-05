@@ -57,4 +57,3 @@ end
 flink_jobmgr "#{homedir}" do
   action :return_publickey
 end
-
