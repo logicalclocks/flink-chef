@@ -1,4 +1,3 @@
-
 service "webclient" do
   supports :restart => true, :stop => true, :start => true, :status => true
   action :nothing

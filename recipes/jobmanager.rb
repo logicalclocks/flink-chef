@@ -11,7 +11,7 @@ slaves = node[:flink][:taskmanager][:private_ips].join("\n")
 # the existing file as long as the new contents have a non-default value.
 file "#{node[:flink][:conf_dir]}/slaves" do
   owner node[:flink][:user]
-  group node[:hadoop][:group]
+  group node[:flink][:group]
   mode '644'
   content slaves.to_s
   action :create
@@ -25,15 +25,16 @@ end
 template "/etc/init.d/jobmanager" do
   source "jobmanager.erb"
   owner node[:flink][:user]
-  group node[:hadoop][:group]
+  group node[:flink][:group]
   mode 0754
   notifies :enable, resources(:service => "jobmanager")
   notifies :restart, resources(:service => "jobmanager"), :immediately
 end
 
 hadoop_hdfs_directory "/User/#{node[:flink][:user]}" do
-  action :create
+  action :create_as_superuser
   owner node[:flink][:user]
+  group node[:flink][:group]
   mode "1775"
 end
 
