@@ -11,9 +11,9 @@ default[:flink][:group]                            = node[:hadoop][:group]
 default[:flink][:version]                          = "0.9.0" 
 
 default[:flink][:hadoop_version]                   = "27"
-default[:flink][:dir]                              = "/srv"
+default[:flink][:dir]                              = "/usr/local"
 default[:flink][:home]                             = "#{node[:flink][:dir]}/flink-#{node[:flink][:version]}"
-default[:flink][:url]                              = "http://apache.mirrors.spacedump.net/flink/flink-#{node[:flink][:version]}/#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}.tgz"
+default[:flink][:url]                              = "http://apache.mirrors.spacedump.net/flink/flink-#{node[:flink][:version]}/flink-#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}.tgz"
 default[:flink][:conf_dir]                         = "#{node[:flink][:home]}/conf"
 
 default[:flink][:checksum]                         = ""

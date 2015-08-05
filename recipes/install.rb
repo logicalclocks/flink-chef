@@ -9,7 +9,7 @@ end
 user node[:flink][:user] do
   supports :manage_home => true
   action :create
-  home "/home/#{node[:flink][:user]}"
+  home node[:flink][:home]
   system true
   shell "/bin/bash"
   not_if "getent passwd #{node[:flink]['user']}"

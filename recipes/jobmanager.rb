@@ -6,6 +6,7 @@ file "#{node[:flink][:conf_dir]}/slaves" do
 end
 
 slaves = node[:flink][:taskmanager][:private_ips].join("\n")
+slaves += "\n"
 
 # Default behaviour of attribute "content" is to replace the contents of
 # the existing file as long as the new contents have a non-default value.
@@ -28,7 +29,7 @@ template "/etc/init.d/jobmanager" do
   group node[:flink][:group]
   mode 0754
   variables({
-              :mode => node[:flink][:jobmanager][:mode]
+              :mode => "#{node[:flink][:jobmanager][:mode]}"
             })
   notifies :enable, resources(:service => "jobmanager")
   notifies :restart, resources(:service => "jobmanager"), :immediately
