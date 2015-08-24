@@ -20,15 +20,18 @@ depends          "ark"
   supports os
 end
 
-attribute "flink/jobmanager/mode",
+attribute "flink/mode",
 :display_name => "Run Flink JobManager in one of the following modes: batch, streaming",
+:required => "required",
 :type => 'string'
 
 attribute "flink/jobmanager/heap_mbs",
 :display_name => "Flink JobManager Heap Size in MB",
+:required => "required",
 :type => 'string'
 
 attribute "flink/taskmanager/heap_mbs",
 :display_name => "Flink TaskManager Heap Size in MB",
+:required => "required",
 :type => 'string'
 

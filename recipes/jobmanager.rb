@@ -29,7 +29,7 @@ template "/etc/init.d/jobmanager" do
   group node[:flink][:group]
   mode 0754
   variables({
-              :mode => "#{node[:flink][:jobmanager][:mode]}"
+              :mode => "#{node[:flink][:mode]}"
             })
   notifies :enable, resources(:service => "jobmanager")
   notifies :restart, resources(:service => "jobmanager"), :immediately
