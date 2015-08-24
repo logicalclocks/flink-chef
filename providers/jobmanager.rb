@@ -30,13 +30,6 @@ end
 action :get_publickey do
   homedir = "#{new_resource.homedir}"
 
-  template "#{homedir}/.ssh/config" do
-    source "ssh_config.erb"
-    owner node[:flink][:user]
-    group node[:flink][:group]
-    mode 0664
-  end
-  
   Chef::Log.info "JobMgr public key read is: #{node[:flink][:jobmanager][:public_key]}"
   bash "add_jobmgr_public_key" do
     user node[:flink][:user]
