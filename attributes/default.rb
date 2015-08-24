@@ -1,6 +1,3 @@
-# flink-0.4-hadoop2.tgz
-# flink-dist-0.4-hadoop2-yarn-uberjar.jar
-
 include_attribute "kagent"
 include_attribute "hadoop"
 
