@@ -10,16 +10,36 @@
 ### END INIT INFO
 
 # Variables
-START_PROG=<%= "#{node[:flink][:home]}/bin/jobmanager.sh start cluster " + @flavor %>
-STOP_PROG=<%= "#{node[:flink][:home]}/bin/jobmanager.sh stop" %>
+<% mode=@flavor -%>
+START_PROG="<%= "#{node[:flink][:home]}/bin/jobmanager.sh start cluster #{mode}" %>"
+STOP_PROG="<%= "#{node[:flink][:home]}/bin/jobmanager.sh stop" %>"
 
 EXEC_WITH_USER="su <%= node[:flink][:user] %> -l -c"
 
 RETVAL=0
 
+status() {  
+  PID_FILE=<%= "#{node[:flink][:pid_dir]}/flink-#{node[:flink][:user]}-jobmanager.pid" %> 
+  if [ -f $PID_FILE ] ; then
+     PID=`cat $PID_FILE`
+     kill -0 $PID
+     res=$?
+  else 
+     res=1
+  fi
+  if [ $res -eq 0 ] ; then
+   echo "flink jobmanager is running with PID: $PID"
+  else
+   echo "flink jobmanager is not running"
+  fi
+  return $res
+
+}
+
 start() {
-  RUNNING=status
-  if [ $RUNNING -ne 0 ] ; then
+  status
+  RUNNING=$?
+  if [ $RUNNING -eq 0 ] ; then
     echo "jobmanager is already running"
     return 0
   fi
@@ -36,27 +56,11 @@ stop() {
 
 restart() {
   $EXEC_WITH_USER "$STOP_PROG"
+  sleep 3
   $EXEC_WITH_USER "$START_PROG"
   return $?
 }
 
-status() {  
-  PID_FILE=<%= "#{node[:flink][:pid_dir]}/flink-#{node[:flink][:user]}-jobmanager.pid" %> 
-  if [ -f $PID_FILE ] ; then
-     PID=`cat $PID_FILE`
-     kill -0 $PID
-     res=$?
-  else 
-     res=1
-  fi
-  if [ $res -eq 0 ] ; then
-   echo "flink jobmanager ($PID) is running"
-  else
-   echo "flink jobmanager is not running"
-  fi
-  return $res
-
-}
 
 # user-supplied parameter to stop/start/restart process.
 case "$1" in

@@ -26,8 +26,6 @@ suites:
       - recipe[flink::install]
       - recipe[hadoop::nn]
       - recipe[hadoop::dn]
-      - recipe[hadoop::rm]
-      - recipe[hadoop::nm]
       - recipe[flink::jobmanager]
       - recipe[flink::taskmanager]
       - recipe[flink::wordcount]
