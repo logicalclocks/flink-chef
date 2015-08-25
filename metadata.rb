@@ -21,7 +21,7 @@ depends          "ark"
 end
 
 attribute "flink/mode",
-:display_name => "Run Flink JobManager in one of the following modes: batch, streaming",
+:display_name => "Run Flink JobManager in one of the following modes: BATCH, STREAMING",
 :required => "required",
 :type => 'string'
 
