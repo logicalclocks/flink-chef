@@ -58,4 +58,3 @@ suites:
             public_ips: ["10.0.2.15"]
          private_ips: ["10.0.2.15"]
          public_ips: ["10.0.2.15"]
-         vagrant: "enabled"
