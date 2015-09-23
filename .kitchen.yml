@@ -30,6 +30,7 @@ suites:
       - recipe[flink::taskmanager]
       - recipe[flink::wordcount]
     attributes:
+         vagrant: "true"
          hadoop:
             nn:
                private_ips: ["10.0.2.15"]

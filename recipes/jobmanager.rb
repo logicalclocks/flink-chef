@@ -63,7 +63,7 @@ end
 template "#{homedir}/.ssh/config" do
   source "ssh_config.erb"
   owner node[:flink][:user]
-  group node[:flink][:user]
+  group node[:flink][:group]
   mode 0664
 end
 
