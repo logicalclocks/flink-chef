@@ -1,6 +1,6 @@
 libpath = File.expand_path '../../../kagent/libraries', __FILE__
 
-master_ip = private_recipe_ip("hadoop","nn")
+master_ip = private_recipe_ip("hops","nn")
 
 
 remote_file "#{Chef::Config[:file_cache_path]}/apache.txt" do
