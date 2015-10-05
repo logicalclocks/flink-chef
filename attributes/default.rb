@@ -17,7 +17,7 @@ default[:flink][:checksum]                         = ""
 
 default[:flink][:mode]                             = "BATCH"
 default[:flink][:jobmanager][:rpc_port]            = 6123
-default[:flink][:jobmanager][:web_port]            = 8088
+default[:flink][:jobmanager][:web_port]            = 9088
 default[:flink][:jobmanager][:heap_mbs]            = 256
 default[:flink][:taskmanager][:heap_mbs]           = 512
 
