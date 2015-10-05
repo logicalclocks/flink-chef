@@ -24,6 +24,7 @@ suites:
       - recipe[apt::default]
       - recipe[hops::install]
       - recipe[flink::install]
+      - recipe[hops::ndb]
       - recipe[hops::nn]
       - recipe[hops::dn]
       - recipe[flink::jobmanager]
@@ -34,12 +35,14 @@ suites:
          hops:
             nn:
                private_ips: ["10.0.2.15"]
+               direct_memory_size: 300
             dn:
                private_ips: ["10.0.2.15"]
             rm:
                private_ips: ["10.0.2.15"]
             nm:
                private_ips: ["10.0.2.15"]
+            use_hopsworks: "true"
          hadoop:
             nn:
                private_ips: ["10.0.2.15"]
@@ -58,5 +61,8 @@ suites:
             public_ips: ["10.0.2.15"]
          kagent:
             private_ips: ["10.0.2.15"]
+         hopsworks:
+            default:
+               private_ips: ["10.0.2.15"]
          private_ips: ["10.0.2.15"]
          public_ips: ["10.0.2.15"]
