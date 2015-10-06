@@ -60,13 +60,6 @@ bash "generate-ssh-keypair-for-jobmgr" do
  not_if { ::File.exists?( "#{homedir}/.ssh/id_rsa" ) }
 end
 
-template "#{homedir}/.ssh/config" do
-  source "ssh_config.erb"
-  owner node[:flink][:user]
-  group node[:flink][:group]
-  mode 0600
-end
-
 flink_jobmanager "#{homedir}" do
   action :return_publickey
 end

@@ -14,7 +14,7 @@ action :return_publickey do
     source "ssh_config.erb"
     owner node[:flink][:user]
     group node[:flink][:group]
-    mode 0664
+    mode 0600
   end
  
  kagent_param "/tmp" do
