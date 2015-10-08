@@ -34,7 +34,7 @@ end
 bash "chgrp-flink-installation" do
  user "root"
   code <<-EOF
-  chown -R #{node[:flink][:user]}:#{node[:flink][:group]}
+  chown -R #{node[:flink][:user]}:#{node[:flink][:group]} *
   EOF
 end
 
