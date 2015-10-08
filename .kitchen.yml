@@ -3,10 +3,10 @@ driver:
   name: vagrant
   customize:
     memory: 4096
-    cpuexecutioncap: 90
     cpus: 2
     natdnshostresolver1: "on"
     natdnsproxy1: "on"
+    nictype1: "virtio"
 
 provisioner:
   name: chef_solo
