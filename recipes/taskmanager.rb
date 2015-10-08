@@ -14,7 +14,7 @@ template "/etc/init.d/taskmanager" do
   notifies :restart, resources(:service => "taskmanager")
 end
 
-homedir = node[:flink][:user].eql?("root") ? "/root" : node[:flink][:home]
+homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:home]}"
 
 flink_jobmanager "#{homedir}" do
   action :get_publickey

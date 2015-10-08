@@ -50,7 +50,7 @@ hadoop_hdfs_directory "/User/#{node[:flink][:user]}/checkpoints" do
 end
 
 
-homedir = node[:flink][:user].eql?("root") ? "/root" : node[:flink][:home]
+homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:home]}"
 
 bash "generate-ssh-keypair-for-jobmgr" do
  user node[:flink][:user]

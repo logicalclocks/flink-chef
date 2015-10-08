@@ -9,8 +9,9 @@ end
 user node[:flink][:user] do
   supports :manage_home => true
   action :create
-  home node[:flink][:home]
-  system true
+#  home node[:flink][:home]
+  home "/home/#{node[:flink][:home]}"
+#  system true
   shell "/bin/bash"
   not_if "getent passwd #{node[:flink]['user']}"
 end
@@ -30,6 +31,14 @@ ark "flink" do
   append_env_path true
   owner "#{node[:flink][:user]}"
 end
+
+bash "chgrp-flink-installation" do
+ user "root"
+  code <<-EOF
+  chown -R #{node[:flink][:user]}:#{node[:flink][:group]}
+  EOF
+end
+
 
 file "#{node[:flink][:home]}/conf/flink-conf.yaml" do 
   owner node[:flink][:user]
