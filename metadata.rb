@@ -36,6 +36,10 @@ attribute "flink/taskmanager/heap_mbs",
 :type => 'string'
 
 attribute "flink/user",
-:display_name => "Flink Username",
+:display_name => "Username to run flink as",
+:type => 'string'
+
+attribute "flink/group",
+:display_name => "Groupname to run flink as",
 :type => 'string'
 
