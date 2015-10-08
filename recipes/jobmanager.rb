@@ -55,6 +55,7 @@ homedir = node[:flink][:user].eql?("root") ? "/root" : node[:flink][:home]
 bash "generate-ssh-keypair-for-jobmgr" do
  user node[:flink][:user]
   code <<-EOF
+     mkdir #{homedir}/.ssh
      ssh-keygen -b 2048 -f #{homedir}/.ssh/id_rsa -t rsa -q -N ''
   EOF
  not_if { ::File.exists?( "#{homedir}/.ssh/id_rsa" ) }
