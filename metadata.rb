@@ -20,6 +20,14 @@ depends          "ark"
   supports os
 end
 
+attribute "flink/user",
+:display_name => "Username to run flink jobmgr/task as",
+:type => 'string'
+
+attribute "flink/group",
+:display_name => "Groupname to run flink jobmgr/task as",
+:type => 'string'
+
 attribute "flink/mode",
 :display_name => "Run Flink JobManager in one of the following modes: BATCH, STREAMING",
 :required => "required",
