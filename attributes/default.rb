@@ -3,7 +3,7 @@ include_attribute "hadoop"
 
 
 default[:flink][:user]                             = "flink"
-default[:flink][:group]                            = node[:hadoop][:group]
+default[:flink][:group]                            = "hadoop"
 
 default[:flink][:version]                          = "0.9.1" 
 
