@@ -14,7 +14,7 @@ template "/etc/init.d/taskmanager" do
   notifies :restart, resources(:service => "taskmanager")
 end
 
-homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:home]}"
+homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:user]}"
 
 flink_jobmanager "#{homedir}" do
   action :get_publickey
@@ -34,3 +34,9 @@ end
 # end
 
 
+bash "chgrp-flink-installation" do
+ user "root"
+  code <<-EOF
+  chown -R #{node[:flink][:user]}:hadoop #{node[:flink][:home]}/*
+  EOF
+end

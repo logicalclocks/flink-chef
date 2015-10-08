@@ -22,6 +22,7 @@ suites:
   - name: default
     run_list:
       - recipe[apt::default]
+      - recipe[ndb::install]
       - recipe[hops::install]
       - recipe[flink::install]
       - recipe[hops::ndb]

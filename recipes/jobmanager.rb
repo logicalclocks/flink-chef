@@ -50,7 +50,7 @@ hadoop_hdfs_directory "/User/#{node[:flink][:user]}/checkpoints" do
 end
 
 
-homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:home]}"
+homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:user]}"
 
 bash "generate-ssh-keypair-for-jobmgr" do
  user node[:flink][:user]
@@ -63,3 +63,11 @@ end
 flink_jobmanager "#{homedir}" do
   action :return_publickey
 end
+
+bash "chgrp-flink-installation" do
+ user "root"
+  code <<-EOF
+  chown -R #{node[:flink][:user]}:hadoop #{node[:flink][:home]}/*
+  EOF
+end
+

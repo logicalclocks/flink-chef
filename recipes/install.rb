@@ -31,13 +31,6 @@ ark "flink" do
   owner "#{node[:flink][:user]}"
 end
 
-bash "chgrp-flink-installation" do
- user "root"
-  code <<-EOF
-  chown -R #{node[:flink][:user]}:#{node[:flink][:group]} *
-  EOF
-end
-
 
 file "#{node[:flink][:home]}/conf/flink-conf.yaml" do 
   owner node[:flink][:user]
