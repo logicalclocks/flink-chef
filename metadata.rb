@@ -35,3 +35,7 @@ attribute "flink/taskmanager/heap_mbs",
 :required => "required",
 :type => 'string'
 
+attribute "flink/user",
+:display_name => "Flink Username",
+:type => 'string'
+
