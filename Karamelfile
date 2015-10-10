@@ -1,12 +1,12 @@
 dependencies: 
   - recipe: flink::install
     local:
-      - hadoop::install
+      - hops::install
   - recipe: flink::jobmanager
     local:
       - flink::install
     global:  
-      - hadoop::dn
+      - hops::dn
   - recipe: flink::taskmanager
     local:
       - flink::install
