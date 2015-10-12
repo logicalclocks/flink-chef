@@ -36,14 +36,16 @@ template "/etc/init.d/jobmanager" do
 end
 
 hadoop_hdfs_directory "/User/#{node[:flink][:user]}" do
-  action :create_as_superuser
+#  action :create_as_superuser
+  action :create
   owner node[:flink][:user]
   group node[:flink][:group]
   mode "1775"
 end
 
 hadoop_hdfs_directory "/User/#{node[:flink][:user]}/checkpoints" do
-  action :create_as_superuser
+#  action :create_as_superuser
+  action :create
   owner node[:flink][:user]
   group node[:flink][:group]
   mode "1775"

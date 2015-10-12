@@ -12,6 +12,7 @@ recipe           "jobmanager",  "Starts a Flink JobManager in standalone mode"
 recipe           "taskmanager",   "Starts a Flink Slave in standalone mode"
 recipe           "wordcount",   "Prepares wordcount example using HDFS"
 
+depends          "hops"
 depends          "hadoop"
 depends          "kagent"
 depends          "ark"

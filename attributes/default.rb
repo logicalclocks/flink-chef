@@ -1,5 +1,6 @@
 include_attribute "kagent"
 include_attribute "hadoop"
+include_attribute "hops"
 
 
 default[:flink][:user]                             = "flink"
