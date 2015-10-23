@@ -1,6 +1,14 @@
 libpath = File.expand_path '../../../kagent/libraries', __FILE__
 
-master_ip = private_recipe_ip("flink","jobmanager")
+
+begin
+  master_ip = private_recipe_ip("flink","jobmanager")
+rescue
+# No master is needed for YARN
+  master_ip = my_private_ip()
+end
+
+
 
 group node[:hadoop][:group] do
   action :create
