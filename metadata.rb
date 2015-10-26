@@ -44,3 +44,7 @@ attribute "flink/taskmanager/heap_mbs",
 :required => "required",
 :type => 'string'
 
+attribute "flink/dir",
+:display_name => "Root directory for flink installation",
+:type => 'string'
+
