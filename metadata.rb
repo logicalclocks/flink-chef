@@ -43,3 +43,8 @@ attribute "flink/group",
 :display_name => "Groupname to run flink as",
 :type => 'string'
 
+
+attribute "flink/dir",
+:display_name => "Root directory for flink installation",
+:type => 'string'
+
