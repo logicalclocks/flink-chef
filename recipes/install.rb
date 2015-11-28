@@ -33,7 +33,7 @@ ark "flink" do
   url node[:flink][:url]
   version node[:flink][:version]
   path node[:flink][:home]
-  home_dir "#{node[:flink][:dir]}/flink"
+  home_dir "#{node[:flink][:base_dir]}"
   #     checksum  "#{node[:flink][:checksum]}"
   append_env_path true
   owner "#{node[:flink][:user]}"
