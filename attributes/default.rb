@@ -6,7 +6,7 @@ include_attribute "hops"
 default[:flink][:user]                             = "flink"
 default[:flink][:group]                            = "hadoop"
 
-default[:flink][:version]                          = "0.9.1" 
+default[:flink][:version]                          = "0.10.1" 
 
 default[:flink][:hadoop_version]                   = "24"
 default[:flink][:dir]                              = "/usr/local"
