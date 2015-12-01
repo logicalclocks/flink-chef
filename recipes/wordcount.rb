@@ -7,9 +7,11 @@ remote_file "#{Chef::Config[:file_cache_path]}/apache.txt" do
   source "https://www.apache.org/licenses/LICENSE-2.0.txt"
 end
 
+
+
 hadoop_hdfs_directory "#{Chef::Config[:file_cache_path]}/apache.txt" do
-  action :put
-  dest "/User/#{node[:flink][:user]}"
+  action :put_as_superuser
+  dest "http://#{master_ip}:#{node[:hadoop][:nn][:port]}/User/#{node[:flink][:user]}"
   owner node[:flink][:user]
   mode "775"
 end
