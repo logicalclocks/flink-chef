@@ -14,7 +14,6 @@ recipe           "wordcount",   "Prepares wordcount example using HDFS"
 
 depends          "hadoop"
 depends          "kagent"
-depends          "ark"
 
 %w{ ubuntu debian rhel centos }.each do |os|
   supports os
