@@ -21,10 +21,13 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[apt::default]
+      - recipe[kagent::install]
       - recipe[ndb::install]
       - recipe[hops::install]
       - recipe[flink::install]
+      - recipe[ndb::mgmd]
+      - recipe[ndb::ndbd]
+      - recipe[ndb::mysqld]
       - recipe[hops::ndb]
       - recipe[hops::nn]
       - recipe[hops::dn]
@@ -33,6 +36,13 @@ suites:
       - recipe[flink::wordcount]
     attributes:
          vagrant: "true"
+         ndb:
+            mgmd:
+               private_ips: ["10.0.2.15"]
+            ndbd:
+               private_ips: ["10.0.2.15"]
+            mysqld:
+               private_ips: ["10.0.2.15"]
          hops:
             nn:
                private_ips: ["10.0.2.15"]

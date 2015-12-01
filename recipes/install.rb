@@ -1,6 +1,3 @@
-libpath = File.expand_path '../../../kagent/libraries', __FILE__
-
-
 begin
   master_ip = private_recipe_ip("flink","jobmanager")
 rescue
@@ -27,17 +24,51 @@ group node[:hadoop][:group] do
   action :modify
   members ["#{node[:flink][:user]}"]
   append true
+end 
+
+url = node[:flink][:url]
+
+base_filename =  File.basename(node[:flink][:url])
+base_dirname =  File.basename(base_filename, ".tgz")
+flink_dirname = "#{Chef::Config[:file_cache_path]}/#{base_dirname}"
+cached_filename = "#{Chef::Config[:file_cache_path]}/#{base_filename}"
+
+Chef::Log.info "You should find flink binaries in:  #{cached_filename}"
+
+remote_file cached_filename do
+#  checksum node[:flink][:checksum]
+  source url
+  mode 0755
+  action :create
 end
 
-ark "flink" do
-  url node[:flink][:url]
-  version node[:flink][:version]
-  path node[:flink][:home]
-  home_dir "#{node[:flink][:base_dir]}"
-  #     checksum  "#{node[:flink][:checksum]}"
-  append_env_path true
-  owner "#{node[:flink][:user]}"
+bash "unpack_flink" do
+    user "root"
+    code <<-EOF
+tar -xzf #{cached_filename} -C #{Chef::Config[:file_cache_path]}
+mv #{Chef::Config[:file_cache_path]}/flink-#{node[:flink][:version]} #{node[:flink][:dir]}
+if [ -L #{node[:flink][:dir]}/flink ] ; then
+ rm -rf #{node[:flink][:dir]}/flink
+fi
+touch #{node[:flink][:home]}/.flink_downloaded
+chown -R #{node[:flink][:user]} #{node[:flink][:home]}
+ln -s #{node[:flink][:home]} #{node[:flink][:dir]}/flink
+chown #{node[:flink][:user]} #{node[:flink][:dir]}/flink
+EOF
+  not_if { ::File.exists?( "#{node[:flink][:home]}/bin/jobmanager" ) }
 end
+
+
+
+# ark "flink" do
+#   url node[:flink][:url]
+#   version node[:flink][:version]
+#   path node[:flink][:home]
+#   home_dir "#{node[:flink][:base_dir]}"
+#   #     checksum  "#{node[:flink][:checksum]}"
+#   append_env_path true
+#   owner "#{node[:flink][:user]}"
+# end
 
 
 file "#{node[:flink][:home]}/conf/flink-conf.yaml" do 
