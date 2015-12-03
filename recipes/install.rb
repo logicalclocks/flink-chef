@@ -20,8 +20,8 @@ group node[:hadoop][:group] do
   append true
 end
 
-
 url = node[:flink][:url]
+Chef::Log.info "Download URL:  #{url}"
 
 base_filename =  File.basename(node[:flink][:url])
 base_dirname =  File.basename(base_filename, ".tgz")

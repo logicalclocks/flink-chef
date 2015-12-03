@@ -6,8 +6,8 @@ driver:
     natdnshostresolver1: "on"
     natdnsproxy1: "on"
     nictype1: "virtio"
-#  network:
-#  - ["forwarded_port", {guest: 8080, host: 8080}]
+  network:
+  - ["forwarded_port", {guest: 8080, host: 8080}]
 
 provisioner:
   name: chef_solo
@@ -24,8 +24,12 @@ suites:
       - recipe[flink::install]
       - recipe[hadoop::nn]
       - recipe[hadoop::dn]
+      - recipe[hadoop::rm]
+      - recipe[hadoop::nm]
       - recipe[flink::jobmanager]
+      - recipe[flink::jobmanager-hadoop]
       - recipe[flink::taskmanager]
+      - recipe[flink::wordcount]
     attributes:
          vagrant: "true"
          hadoop:
