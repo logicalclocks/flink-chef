@@ -5,13 +5,15 @@ include_attribute "hadoop"
 default[:flink][:user]                             = "flink"
 default[:flink][:group]                            = node[:hadoop][:group]
 
-default[:flink][:version]                          = "0.9.1" 
+default[:flink][:version]                          = "0.10.1" 
 
 default[:flink][:hadoop_version]                   = "24"
+default[:flink][:scala_version]                    = "2.10"
+
 default[:flink][:dir]                              = "/usr/local"
 default[:flink][:home]                             = "#{node[:flink][:dir]}/flink-#{node[:flink][:version]}"
 #default[:flink][:url]                              = "https://www.apache.org/dist/flink/flink-#{node[:flink][:version]}/flink-#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}.tgz"
-default[:flink][:url]                              = node[:download_url] + "/flink-#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}.tgz"
+default[:flink][:url]                              = node[:download_url] + "/flink-#{node[:flink][:version]}/flink-#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}-#{node[:flink][:scala_version]}.tgz"
 default[:flink][:conf_dir]                         = "#{node[:flink][:home]}/conf"
 
 default[:flink][:checksum]                         = ""
