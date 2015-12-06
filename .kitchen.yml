@@ -16,11 +16,12 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
+    run_list:
+     - recipe[apt]
 
 suites:
   - name: default
     run_list:
-      - recipe[apt::default]
       - recipe[hadoop::install]
       - recipe[flink::install]
       - recipe[hadoop::nn]
@@ -32,6 +33,9 @@ suites:
       - recipe[flink::taskmanager]
       - recipe[flink::wordcount]
     attributes:
+         java:
+           jdk_version: 8
+           install_flavor: oracle
          vagrant: "true"
          hadoop:
             nn:

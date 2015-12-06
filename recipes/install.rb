@@ -1,3 +1,4 @@
+include_recipe "java"
 
 master_ip = private_recipe_ip("flink","jobmanager")
 
