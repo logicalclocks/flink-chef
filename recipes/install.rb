@@ -1,3 +1,4 @@
+include_recipe "java"
 master_ip = private_recipe_ip("flink","jobmanager")
 
 include_recipe "java"
@@ -21,8 +22,8 @@ group node[:hadoop][:group] do
   append true
 end
 
-
 url = node[:flink][:url]
+Chef::Log.info "Download URL:  #{url}"
 
 base_filename =  File.basename(node[:flink][:url])
 base_dirname =  File.basename(base_filename, ".tgz")
