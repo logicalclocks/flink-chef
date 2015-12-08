@@ -1,5 +1,6 @@
-
 master_ip = private_recipe_ip("flink","jobmanager")
+
+include_recipe "java"
 
 group node[:hadoop][:group] do
   action :create
