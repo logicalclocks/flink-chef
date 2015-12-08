@@ -34,8 +34,10 @@ suites:
       - recipe[flink::wordcount]
     attributes:
          java:
-           jdk_version: 8
-           install_flavor: oracle
+            jdk_version: 8
+            install_flavor: oracle
+            oracle:
+               accept_oracle_download_terms: true
          vagrant: "true"
          hadoop:
             nn:
