@@ -36,7 +36,6 @@ action :get_publickey do
     group node[:flink][:group]
     code <<-EOF
       set -e
-      mkdir #{homedir}/.ssh
       echo "#{node[:flink][:jobmanager][:public_key]}" >> #{homedir}/.ssh/authorized_keys
       touch #{homedir}/.ssh/.jobmgr_key_authorized
   EOF
