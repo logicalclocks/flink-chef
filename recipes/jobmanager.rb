@@ -38,22 +38,17 @@ end
 
 homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:user]}"
 
-bash "generate-ssh-keypair-for-jobmgr" do
- user node[:flink][:user]
-  code <<-EOF
-     mkdir #{homedir}/.ssh
-     ssh-keygen -b 2048 -f #{homedir}/.ssh/id_rsa -t rsa -q -N ''
-  EOF
- not_if { ::File.exists?( "#{homedir}/.ssh/id_rsa" ) }
-end
+kagent_keys "#{homedir}" do
+  cb_user node[:flink][:user]
+  cb_group node[:flink][:group]
+  action :generate  
+end  
 
-template "#{homedir}/.ssh/config" do
-  source "ssh_config.erb"
-  owner node[:flink][:user]
-  group node[:flink][:group]
-  mode 0664
-end
-
-flink_jobmanager "#{homedir}" do
+kagent_keys "#{homedir}" do
+  cb_user node[:flink][:user]
+  cb_group node[:flink][:group]
+  cb_name "flink"
+  cb_recipe "jobmanager"  
   action :return_publickey
-end
+end  
+

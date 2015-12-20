@@ -16,9 +16,14 @@ end
 
 homedir = node[:flink][:user].eql?("root") ? "/root" : "/home/#{node[:flink][:user]}"
 
-flink_jobmanager "#{homedir}" do
+kagent_keys "#{homedir}" do
+  cb_user "#{node[:flink][:user]}"
+  cb_group "#{node[:flink][:group]}"
+  cb_name "flink"
+  cb_recipe "jobmanager"  
   action :get_publickey
-end
+end  
+
 
 # Add the jobmanager hosts' public key, so that it can start/stop this node using passwordless ssh.
 # Dont append if the public key is already in the authorized_keys or is empty

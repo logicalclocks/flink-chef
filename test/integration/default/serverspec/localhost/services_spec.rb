@@ -23,8 +23,6 @@ describe command("su hdfs -l -c \"/srv/hadoop/bin/hdfs dfs -ls /User\"") do
   its (:stdout) { should match /flink/ }
 end
 
-#describe command("su spark -l -c \"/srv/spark/bin/run-example SparkPi 10\"") do
-#  its (:stdout) { should match /Pi is roughly/ }
-#end
-
-
+describe command("grep -Fxvf /home/spark/.ssh/id_rsa.pub /home/spark/.ssh/authorized_keys") do
+  its (:stdout) { should match // }
+end
