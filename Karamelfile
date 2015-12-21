@@ -14,3 +14,6 @@ dependencies:
     global:  
       - flink::taskmanager
       - hadoop::dn
+  - recipe: flink::jobmanager-hadoop
+    local:
+      - hadoop::dn
