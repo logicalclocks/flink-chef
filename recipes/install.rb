@@ -1,8 +1,6 @@
 include_recipe "java"
 master_ip = private_recipe_ip("flink","jobmanager")
 
-
-node.default['java']['jdk_version'] = 8
 include_recipe "java"
 
 group node[:hadoop][:group] do
