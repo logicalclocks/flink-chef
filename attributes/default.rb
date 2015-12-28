@@ -6,14 +6,14 @@ include_attribute "hops"
 default[:flink][:user]                             = "flink"
 default[:flink][:group]                            = "hadoop"
 
-default[:flink][:version]                          = "0.9.1" 
+default[:flink][:version]                          = "0.10.1" 
 
 default[:flink][:hadoop_version]                   = "24"
 default[:flink][:scala_version]                    = "2.10"
 default[:flink][:dir]                              = "/srv"
 default[:flink][:home]                             = "#{node[:flink][:dir]}/flink-#{node[:flink][:version]}"
-default[:flink][:url]                              = "#{download_url}/flink-#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}.tgz"
-#default[:flink][:url]                              = "#{download_url}/flink-#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}-scala_#{node[:flink][:scala_version]}.tgz"
+# default[:flink][:url]                              = "#{download_url}/flink-#{node[:flink][:version]}-bin-hadoop#{node[:flink][:hadoop_version]}.tgz"
+default[:flink][:url]  = node[:download_url] + "/flink-" + node[:flink][:version] + "-bin-hadoop" + node[:flink][:hadoop_version] + "-scala_" + node[:flink][:scala_version] + ".tgz"
 default[:flink][:conf_dir]                         = "#{node[:flink][:home]}/conf"
 
 default[:flink][:checksum]                         = ""

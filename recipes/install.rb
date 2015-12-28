@@ -5,7 +5,7 @@ rescue
   master_ip = my_private_ip()
 end
 
-
+include_recipe "java"
 
 group node[:hadoop][:group] do
   action :create
@@ -57,19 +57,6 @@ chown #{node[:flink][:user]} #{node[:flink][:dir]}/flink
 EOF
   not_if { ::File.exists?( "#{node[:flink][:home]}/bin/jobmanager" ) }
 end
-
-
-
-# ark "flink" do
-#   url node[:flink][:url]
-#   version node[:flink][:version]
-#   path node[:flink][:home]
-#   home_dir "#{node[:flink][:base_dir]}"
-#   #     checksum  "#{node[:flink][:checksum]}"
-#   append_env_path true
-#   owner "#{node[:flink][:user]}"
-# end
-
 
 file "#{node[:flink][:home]}/conf/flink-conf.yaml" do 
   owner node[:flink][:user]

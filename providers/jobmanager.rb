@@ -4,12 +4,6 @@ action :return_publickey do
  Chef::Log.info "Public key read is: #{contents}"
  node.default[:flink][:jobmanager][:public_key] = "#{contents}"
 
-# This works for chef-solo - we are executing this recipe.rb file.
- recipeName = "#{__FILE__}".gsub(/.*\//, "")
- recipeName = "#{recipeName}".gsub(/\.rb/, "")
-
- Chef::Log.info "Recipe name is #{recipeName}"
-
   template "#{homedir}/.ssh/config" do
     source "ssh_config.erb"
     owner node[:flink][:user]

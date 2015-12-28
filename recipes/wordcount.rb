@@ -25,6 +25,6 @@ nn="#{master_ip}:#{node[:hadoop][:nn][:port]}"
      cd #{node[:flink][:home]}
      # This generates about 100 MB of random data, takes about 30 seconds on my laptop
      # head -c 100000000 /dev/urandom >> examples/dummy.txt
-     echo "./bin/flink run -p 1 -j ./examples/flink-java-examples-#{node[:flink][:version]}-WordCount.jar hdfs://#{nn}/User/#{node[:flink][:user]}/apache.txt hdfs://#{nn}/User/#{node[:flink][:user]}/wordcount-result.txt\n" > README.wordcount
+     echo "./bin/flink run -p 1 -j ./examples/WordCount.jar hdfs://#{nn}/User/#{node[:flink][:user]}/apache.txt hdfs://#{nn}/User/#{node[:flink][:user]}/wordcount-result.txt\n" > README.wordcount
   EOH
  end
