@@ -1,11 +1,11 @@
-hadoop_hdfs_directory "/User/#{node[:flink][:user]}" do
+hadoop_hdfs_directory "#{node[:hdfs][:user_home]}/#{node[:flink][:user]}" do
   action :create_as_superuser
   owner node[:flink][:user]
   group node[:flink][:group]
   mode "1775"
 end
 
-hadoop_hdfs_directory "/User/#{node[:flink][:user]}/checkpoints" do
+hadoop_hdfs_directory "#{node[:hdfs][:user_home]}/#{node[:flink][:user]}/checkpoints" do
   action :create_as_superuser
   owner node[:flink][:user]
   group node[:flink][:group]
