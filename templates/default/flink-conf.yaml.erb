@@ -56,7 +56,7 @@ state.backend: jobmanager
 # Note: State backend must be accessible from the JobManager, use file://
 # only for local setups. 
 #
-state.backend.fs.checkpointdir: hdfs://User/<%= node[:flink][:user] %>/checkpoints 
+state.backend.fs.checkpointdir: hdfs://user/<%= node[:flink][:user] %>/checkpoints 
 
 
 #==============================================================================
