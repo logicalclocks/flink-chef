@@ -48,3 +48,7 @@ attribute "flink/dir",
 :display_name => "Root directory for flink installation",
 :type => 'string'
 
+attribute "flink/taskmanager/num_taskslots",
+:display_name => "Override the default number of task slots (default = NoOfCPUs)",
+:type => 'string'
+

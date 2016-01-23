@@ -19,7 +19,7 @@ describe service('taskmanager') do
   it { should be_running   }
 end 
 
-describe command("su hdfs -l -c \"/srv/hadoop/bin/hdfs dfs -ls /User\"") do
+describe command("su hdfs -l -c \"/srv/hadoop/bin/hdfs dfs -ls /user\"") do
   its (:stdout) { should match /flink/ }
 end
 
