@@ -31,13 +31,14 @@ suites:
       - recipe[hops::nn]
       - recipe[hops::dn]
       - recipe[flink::jobmanager]
-      - recipe[flink::jobmanager-hadoop]
       - recipe[flink::taskmanager]
+      - recipe[flink::yarn]
       - recipe[flink::wordcount]
     attributes:
          java:
             jdk_version: 7
          vagrant: "true"
+         user: glassfish
          ndb:
             mgmd:
                private_ips: ["10.0.2.15"]
