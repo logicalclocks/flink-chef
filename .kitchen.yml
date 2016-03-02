@@ -21,12 +21,12 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[hadoop::install]
+      - recipe[apache_hadoop::install]
       - recipe[flink::install]
-      - recipe[hadoop::nn]
-      - recipe[hadoop::dn]
-      - recipe[hadoop::rm]
-      - recipe[hadoop::nm]
+      - recipe[apache_hadoop::nn]
+      - recipe[apache_hadoop::dn]
+      - recipe[apache_hadoop::rm]
+      - recipe[apache_hadoop::nm]
       - recipe[flink::jobmanager]
       - recipe[flink::jobmanager-hadoop]
       - recipe[flink::taskmanager]
@@ -35,7 +35,7 @@ suites:
          java:
             jdk_version: 8
          vagrant: "true"
-         hadoop:
+         apache_hadoop:
             nn:
                private_ips: ["10.0.2.15"]
                public_ips: ["10.0.2.15"]

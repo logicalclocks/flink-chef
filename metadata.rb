@@ -1,10 +1,10 @@
-name             'flink'
+name             "flink"
 maintainer       "Jim Dowling"
 maintainer_email "jdowling@sics.se"
 license          "Apache v 2.0"
 description      'Installs/Configures Standalone Apache Flink'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0"
+version          "0.1.0"
 
 recipe           "install", "Installs Apache Flink"
 #link:<a target='_blank' href='http://%host%:8088/'>Launch the WebUI for the Flink JobManager</a>
@@ -19,6 +19,10 @@ depends          "java"
 %w{ ubuntu debian rhel centos }.each do |os|
   supports os
 end
+
+attribute "java/jdk_version",
+:display_name =>  "Jdk version",
+:type => 'string'
 
 attribute "flink/mode",
 :display_name => "Run Flink JobManager in one of the following modes: BATCH, STREAMING",
@@ -39,10 +43,9 @@ attribute "flink/user",
 :display_name => "Username to run flink as",
 :type => 'string'
 
-attribute "flink/group",
+attribute "hadoop/group",
 :display_name => "Groupname to run flink as",
 :type => 'string'
-
 
 attribute "flink/dir",
 :display_name => "Root directory for flink installation",
