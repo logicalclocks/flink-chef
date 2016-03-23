@@ -26,6 +26,7 @@ end
 
 attribute "java/jdk_version",
 :display_name =>  "Jdk version",
+:type => 'string'
 
 attribute "flink/user",
 :display_name => "Username to run flink jobmgr/task as",

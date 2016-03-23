@@ -14,29 +14,20 @@ provisioner:
   require_chef_omnibus: 12.4.3
 
 platforms:
-<<<<<<< HEAD
-#  - name: ubuntu-14.04
+  - name: ubuntu-14.04
 #  - name: ubuntu-15.04
-  - name: centos-7.0
+#  - name: centos-7.0
     run_list:
      - recipe[apt]
-=======
-  - name: ubuntu-14.04
-#  - name: centos-6.5
->>>>>>> 3e3811ad1b1fb1155357987afef30d0f79178395
 
 suites:
   - name: default
     run_list:
-<<<<<<< HEAD
-      - recipe[apache_hadoop::install]
+#      - recipe[apache_hadoop::install]
       - recipe[flink::install]
-      - recipe[apache_hadoop::nn]
-      - recipe[apache_hadoop::dn]
-      - recipe[flink::jobmanager]
-      - recipe[flink::yarn]
-=======
-      - recipe[kagent::install]
+#      - recipe[apache_hadoop::nn]
+#      - recipe[apache_hadoop::dn]
+#      - recipe[flink::jobmanager]
       - recipe[ndb::install]
       - recipe[hops::install]
       - recipe[flink::install]
@@ -46,22 +37,14 @@ suites:
       - recipe[hops::ndb]
       - recipe[hops::nn]
       - recipe[hops::dn]
-      - recipe[flink::jobmanager]
->>>>>>> 3e3811ad1b1fb1155357987afef30d0f79178395
-      - recipe[flink::taskmanager]
+      #- recipe[flink::jobmanager]
+      #- recipe[flink::taskmanager]
       - recipe[flink::yarn]
-      - recipe[flink::wordcount]
+      #- recipe[flink::wordcount]
     attributes:
-<<<<<<< HEAD
-#         java:
-#            jdk_version: 8
-         vagrant: "true"
-         apache_hadoop:
-=======
          java:
             jdk_version: 7
          vagrant: "true"
-         user: glassfish
          ndb:
             mgmd:
                private_ips: ["10.0.2.15"]
@@ -80,8 +63,7 @@ suites:
             nm:
                private_ips: ["10.0.2.15"]
             use_hopsworks: "true"
-         hadoop:
->>>>>>> 3e3811ad1b1fb1155357987afef30d0f79178395
+         apache_hadoop:
             nn:
                private_ips: ["10.0.2.15"]
             dn:

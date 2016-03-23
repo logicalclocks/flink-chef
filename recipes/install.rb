@@ -77,10 +77,3 @@ template "#{node.flink.home}/conf/flink-conf.yaml" do
 end
 
 
-user_ulimit node.flink.user do
-  filehandle_limit 65000
-  process_limit 65000
-  memory_limit 100000
-  stack_soft_limit 65533
-  stack_hard_limit 65533
-end
