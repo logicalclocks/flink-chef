@@ -1,19 +1,15 @@
 dependencies: 
   - recipe: flink::install
-  - recipe: flink::jobmanager
-    local:
-      - flink::install
   - recipe: flink::taskmanager
-    local:
-      - flink::install
     global:  
       - flink::jobmanager
   - recipe: flink::wordcount
-    local:
-      - flink::install
     global:  
       - flink::taskmanager
+      - hops::dn
       - apache_hadoop::dn
-  - recipe: flink::jobmanager-hadoop
+  - recipe: flink::yarn
     global:
       - apache_hadoop::dn
+      - hops::dn
+

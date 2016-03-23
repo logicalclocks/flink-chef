@@ -56,4 +56,3 @@ kagent_keys "#{homedir}" do
   cb_recipe "jobmanager"  
   action :return_publickey
 end  
-

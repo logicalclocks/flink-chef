@@ -3,63 +3,105 @@ driver:
   name: vagrant
   customize:
     memory: 4096
+    cpus: 1
     natdnshostresolver1: "on"
     natdnsproxy1: "on"
     nictype1: "virtio"
   network:
-  - ["forwarded_port", {guest: 8081, host: 18081}]
 
 provisioner:
   name: chef_solo
   require_chef_omnibus: 12.4.3
 
 platforms:
+<<<<<<< HEAD
 #  - name: ubuntu-14.04
 #  - name: ubuntu-15.04
   - name: centos-7.0
     run_list:
      - recipe[apt]
+=======
+  - name: ubuntu-14.04
+#  - name: centos-6.5
+>>>>>>> 3e3811ad1b1fb1155357987afef30d0f79178395
 
 suites:
   - name: default
     run_list:
+<<<<<<< HEAD
       - recipe[apache_hadoop::install]
       - recipe[flink::install]
       - recipe[apache_hadoop::nn]
       - recipe[apache_hadoop::dn]
       - recipe[flink::jobmanager]
       - recipe[flink::yarn]
+=======
+      - recipe[kagent::install]
+      - recipe[ndb::install]
+      - recipe[hops::install]
+      - recipe[flink::install]
+      - recipe[ndb::mgmd]
+      - recipe[ndb::ndbd]
+      - recipe[ndb::mysqld]
+      - recipe[hops::ndb]
+      - recipe[hops::nn]
+      - recipe[hops::dn]
+      - recipe[flink::jobmanager]
+>>>>>>> 3e3811ad1b1fb1155357987afef30d0f79178395
       - recipe[flink::taskmanager]
+      - recipe[flink::yarn]
       - recipe[flink::wordcount]
     attributes:
+<<<<<<< HEAD
 #         java:
 #            jdk_version: 8
          vagrant: "true"
          apache_hadoop:
+=======
+         java:
+            jdk_version: 7
+         vagrant: "true"
+         user: glassfish
+         ndb:
+            mgmd:
+               private_ips: ["10.0.2.15"]
+            ndbd:
+               private_ips: ["10.0.2.15"]
+            mysqld:
+               private_ips: ["10.0.2.15"]
+         hops:
             nn:
                private_ips: ["10.0.2.15"]
-               public_ips: ["10.0.2.15"]
+               direct_memory_size: 300
             dn:
                private_ips: ["10.0.2.15"]
-               public_ips: ["10.0.2.15"]
             rm:
                private_ips: ["10.0.2.15"]
-               public_ips: ["10.0.2.15"]
             nm:
                private_ips: ["10.0.2.15"]
-               public_ips: ["10.0.2.15"]
+            use_hopsworks: "true"
+         hadoop:
+>>>>>>> 3e3811ad1b1fb1155357987afef30d0f79178395
+            nn:
+               private_ips: ["10.0.2.15"]
+            dn:
+               private_ips: ["10.0.2.15"]
+            rm:
+               private_ips: ["10.0.2.15"]
+            nm:
+               private_ips: ["10.0.2.15"]
          flink:
             hadoop_distribution: "hops"
             jobmanager:
-               public_ips: ["10.0.2.15"]
                private_ips: ["10.0.2.15"]
             taskmanager:
-               public_ips: ["10.0.2.15"]
                private_ips: ["10.0.2.15"]
             private_ips: ["10.0.2.15"]
             public_ips: ["10.0.2.15"]
          kagent:
             private_ips: ["10.0.2.15"]
-            public_ips: ["10.0.2.15"]
+         hopsworks:
+            default:
+               private_ips: ["10.0.2.15"]
          private_ips: ["10.0.2.15"]
          public_ips: ["10.0.2.15"]

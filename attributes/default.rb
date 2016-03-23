@@ -1,6 +1,6 @@
 include_attribute "kagent"
 include_attribute "apache_hadoop"
-
+include_attribute "hops"
 
 default.flink.user                             = "flink"
 default.flink.group                            = node.apache_hadoop.group
@@ -16,6 +16,7 @@ default.flink.url  = node.download_url + "/flink-" + node.flink.version + "-bin-
 default.flink.conf_dir                         = "#{node.flink.home}/conf"
 
 default.flink.checksum                         = ""
+
 
 default.flink.mode                             = "BATCH"
 default.flink.jobmanager.rpc_port              = 6123

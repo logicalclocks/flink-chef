@@ -1,5 +1,9 @@
-include_recipe "java"
-master_ip = private_recipe_ip("flink","jobmanager")
+begin
+  master_ip = private_recipe_ip("flink","jobmanager")
+rescue
+# No master is needed for YARN
+  master_ip = my_private_ip()
+end
 
 include_recipe "java"
 
@@ -20,7 +24,7 @@ group node.apache_hadoop.group do
   action :modify
   members ["#{node.flink.user}"]
   append true
-end
+end 
 
 url = node.flink.url
 Chef::Log.info "Download URL:  #{url}"
@@ -33,7 +37,7 @@ cached_filename = "#{Chef::Config.file_cache_path}/#{base_filename}"
 Chef::Log.info "You should find flink binaries in:  #{cached_filename}"
 
 remote_file cached_filename do
-  #  checksum node.flink.checksum
+#  checksum node.flink.checksum
   source url
   mode 0755
   action :create

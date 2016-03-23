@@ -1,11 +1,15 @@
 libpath = File.expand_path '../../../kagent/libraries', __FILE__
 
-master_ip = private_recipe_ip("apache_hadoop","nn")
-
+begin
+  master_ip = private_recipe_ip("apache_hadoop","nn")
+rescue
+  master_ip = private_recipe_ip("hops","nn")
+end
 
 remote_file "#{Chef::Config.file_cache_path}/apache.txt" do
   source "https://www.apache.org/licenses/LICENSE-2.0.txt"
 end
+
 
 apache_hadoop_hdfs_directory "#{Chef::Config.file_cache_path}/apache.txt" do
   action :put
