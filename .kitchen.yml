@@ -32,8 +32,8 @@ suites:
       - recipe[flink::taskmanager]
       - recipe[flink::wordcount]
     attributes:
-         java:
-            jdk_version: 8
+#         java:
+#            jdk_version: 8
          vagrant: "true"
          apache_hadoop:
             nn:
@@ -49,6 +49,7 @@ suites:
                private_ips: ["10.0.2.15"]
                public_ips: ["10.0.2.15"]
          flink:
+            hadoop_distribution: "hops"
             jobmanager:
                public_ips: ["10.0.2.15"]
                private_ips: ["10.0.2.15"]

@@ -35,3 +35,8 @@ default.flink.taskmanager.private_ips          = ['10.0.2.15']
 default.flink.pid_dir                          = "/tmp"
 
 default.flink.jobmanager.public_key            = ""
+
+
+# Pick a hadoop distribution. Options are 'hops' and 'apache_hadoop'
+default.flink.hadoop.distribution              = "apache_hadoop"
+
