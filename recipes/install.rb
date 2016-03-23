@@ -77,3 +77,14 @@ template "#{node.flink.home}/conf/flink-conf.yaml" do
 end
 
 
+file "#{node.flink.home}/flink.jar" do
+  action :delete
+  force_unlink true  
+end
+
+ link "#{node.flink.home}/flink.jar" do
+   owner node.flink.user
+   group node.flink.group
+   to "#{node.flink.home}/lib/flink-dist-#{node.flink.version}.jar"
+ end
+
