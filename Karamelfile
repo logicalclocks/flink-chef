@@ -13,7 +13,7 @@ dependencies:
       - flink::install
     global:  
       - flink::taskmanager
-      - hadoop::dn
+      - apache_hadoop::dn
   - recipe: flink::jobmanager-hadoop
     global:
-      - hadoop::dn
+      - apache_hadoop::dn

@@ -9,10 +9,11 @@ version          "0.1.0"
 recipe           "install", "Installs Apache Flink"
 #link:<a target='_blank' href='http://%host%:8088/'>Launch the WebUI for the Flink JobManager</a>
 recipe           "jobmanager",  "Starts a Flink JobManager in standalone mode"
+recipe           "yarn",  "Sets up flink for running on YARN"
 recipe           "taskmanager",   "Starts a Flink Slave in standalone mode"
 recipe           "wordcount",   "Prepares wordcount example using HDFS"
 
-depends          "hadoop"
+depends          "apache_hadoop"
 depends          "kagent"
 depends          "java"
 

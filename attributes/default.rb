@@ -5,7 +5,7 @@ include_attribute "apache_hadoop"
 default.flink.user                             = "flink"
 default.flink.group                            = node.apache_hadoop.group
 
-default.flink.version                          = "0.10.1" 
+default.flink.version                          = "0.9.1" 
 
 default.flink.hadoop_version                   = "24"
 default.flink.scala_version                    = "2.10"
