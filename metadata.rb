@@ -4,7 +4,8 @@ maintainer_email "jdowling@sics.se"
 license          "Apache v 2.0"
 description      'Installs/Configures Standalone Apache Flink'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.0"
+version          "0.1.1"
+source_url       'https://github.com/hopshadoop/flink-chef'
 
 recipe           "install", "Installs Apache Flink"
 #link:<a target='_blank' href='http://%host%:9088/'>Launch the WebUI for the Flink JobManager</a>

@@ -47,7 +47,7 @@ end
 bash "chgrp-flink-installation" do
  user "root"
   code <<-EOF
-  chown -R #{node.flink.user}:hadoop #{node.flink.home/*
+  chown -R #{node.flink.user}:hadoop #{node.flink.home}/
   EOF
 end
 
