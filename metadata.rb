@@ -60,3 +60,6 @@ attribute "flink/taskmanager/num_taskslots",
 :display_name => "Override the default number of task slots (default = NoOfCPUs)",
 :type => 'string'
 
+attribute "flink/hadoop/distribution",
+:display_name => "apache_hadoop (default) or hops",
+:type => 'string'
