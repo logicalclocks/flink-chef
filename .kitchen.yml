@@ -2,7 +2,7 @@
 driver:
   name: vagrant
   customize:
-    memory: 4096
+    memory: 8096
     cpus: 1
     natdnshostresolver1: "on"
     natdnsproxy1: "on"
@@ -31,6 +31,8 @@ suites:
       - recipe[hops::ndb]
       - recipe[hops::nn]
       - recipe[hops::dn]
+      - recipe[hops::rm]
+      - recipe[hops::nm]
       #- recipe[flink::jobmanager]
       #- recipe[flink::taskmanager]
       - recipe[flink::yarn]

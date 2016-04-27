@@ -85,6 +85,6 @@ end
  link "#{node.flink.home}/flink.jar" do
    owner node.flink.user
    group node.flink.group
-   to "#{node.flink.home}/lib/flink-dist-#{node.flink.version}.jar"
+   to "#{node.flink.home}/lib/flink-dist_" + node.flink.scala_version + "-#{node.flink.version}.jar"
  end
 
