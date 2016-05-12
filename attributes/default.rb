@@ -5,7 +5,7 @@ include_attribute "hops"
 default.flink.user                             = "flink"
 default.flink.group                            = node.apache_hadoop.group
 
-default.flink.version                          = "1.0.2" 
+default.flink.version                          = "1.0.3" 
 
 default.flink.hadoop_version                   = "24"
 default.flink.scala_version                    = "2.10"
