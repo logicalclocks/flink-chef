@@ -32,7 +32,8 @@ template "/etc/init.d/jobmanager" do
               :flavor => "#{node.flink.mode}"
             })
   notifies :enable, resources(:service => "jobmanager")
-  notifies :restart, resources(:service => "jobmanager"), :immediately
+  notifies :start, resources(:service => "jobmanager"), :immediately
+  notifies :restart, resources(:service => "jobmanager")
 end
 
 
