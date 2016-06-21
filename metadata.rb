@@ -8,7 +8,7 @@ version          "0.1.1"
 source_url       'https://github.com/hopshadoop/flink-chef'
 
 recipe           "install", "Installs Apache Flink"
-#link:<a target='_blank' href='http://%host%:9088/'>Launch the WebUI for the Flink JobManager</a>
+#link:<a target='_blank' href='http://%host%:8088/'>Launch the WebUI for the Flink JobManager</a>
 recipe           "jobmanager",  "Starts a Flink JobManager in standalone mode"
 recipe           "yarn",  "Sets up flink for running on YARN"
 recipe           "taskmanager",   "Starts a Flink Slave in standalone mode"
