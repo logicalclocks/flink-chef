@@ -31,8 +31,8 @@ Chef::Log.info "Download URL:  #{url}"
 
 base_filename =  File.basename(node.flink.url)
 base_dirname =  File.basename(base_filename, ".tgz")
-flink_dirname = "/tmp/binary/#{base_dirname}"
-cached_filename = "/tmp/binary/#{base_filename}"
+flink_dirname = "/tmp/#{base_dirname}"
+cached_filename = "/tmp/#{base_filename}"
 
 Chef::Log.info "You should find flink binaries in:  #{cached_filename}"
 
@@ -46,8 +46,8 @@ end
 bash "unpack_flink" do
     user "root"
     code <<-EOF
-    tar -xzf #{cached_filename} -C /tmp/binary
-    mv /tmp/binary/flink-#{node.flink.version} #{node.flink.dir}
+    tar -xzf #{cached_filename} -C /tmp
+    mv /tmp/flink-#{node.flink.version} #{node.flink.dir}
     if [ -L #{node.flink.dir}/flink  ; then
        rm -rf #{node.flink.dir}/flink
     fi
