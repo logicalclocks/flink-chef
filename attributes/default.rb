@@ -41,3 +41,4 @@ default.flink.jobmanager.public_key            = ""
 # Pick a hadoop distribution. Options are 'hops' and 'apache_hadoop'
 default.flink.hadoop.distribution              = "apache_hadoop"
 
+node.default.java.jdk_version                  = 7
