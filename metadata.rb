@@ -13,7 +13,7 @@ recipe           "jobmanager",  "Starts a Flink JobManager in standalone mode"
 recipe           "yarn",  "Sets up flink for running on YARN"
 recipe           "taskmanager",   "Starts a Flink Slave in standalone mode"
 recipe           "wordcount",   "Prepares wordcount example using HDFS"
-
+recipe           "purge",   "Remove and delete Flink"
 
 depends          "apache_hadoop"
 depends          "hops"
