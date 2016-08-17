@@ -1,12 +1,30 @@
-bash 'kill_running_service_flink' do
+daemons = %w{JobManager TaskManager}
+daemons.each { |d| 
+
+  bash 'kill_running_service_#{d}' do
     user "root"
     ignore_failure true
     code <<-EOF
-      pkill JobManager
-      pkill TaskManager
+      service stop #{d}
+      systemctl stop #{d}
+      pkill -9 #{d}
     EOF
-end
+  end
 
+  file "/etc/init.d/#{d}" do
+    action :delete
+    ignore_failure true
+  end
+  
+  file "/usr/lib/systemd/system/#{d}.service" do
+    action :delete
+    ignore_failure true
+  end
+  file "/lib/systemd/system/#{d}.service" do
+    action :delete
+    ignore_failure true
+  end
+}
 
 directory node[:flink][:home] do
   recursive true
