@@ -26,40 +26,41 @@ end
 
 
 attribute "java/jdk_version",
-:display_name =>  "Jdk version",
-:type => 'string'
+          :description =>  "Jdk version",
+          :type => 'string'
+
+attribute "java/install_flavor",
+          :description =>  "Oracle (default) or openjdk",
+          :type => 'string'
 
 attribute "flink/user",
-:display_name => "Username to run flink jobmgr/task as",
-:type => 'string'
+          :description => "Username to run flink jobmgr/task as",
+          :type => 'string'
 
 attribute "flink/group",
-:display_name => "Groupname to run flink jobmgr/task as",
-:type => 'string'
+          :description => "Groupname to run flink jobmgr/task as",
+          :type => 'string'
 
 attribute "flink/mode",
-:display_name => "Run Flink JobManager in one of the following modes: BATCH, STREAMING",
-:required => "required",
-:type => 'string'
+          :description => "Run Flink JobManager in one of the following modes: BATCH, STREAMING",
+          :type => 'string'
 
 attribute "flink/jobmanager/heap_mbs",
-:display_name => "Flink JobManager Heap Size in MB",
-:required => "required",
-:type => 'string'
+          :description => "Flink JobManager Heap Size in MB",
+          :type => 'string'
 
 attribute "flink/taskmanager/heap_mbs",
-:display_name => "Flink TaskManager Heap Size in MB",
-:required => "required",
-:type => 'string'
+          :description => "Flink TaskManager Heap Size in MB",
+          :type => 'string'
 
 attribute "flink/dir",
-:display_name => "Root directory for flink installation",
-:type => 'string'
+          :description => "Root directory for flink installation",
+          :type => 'string'
 
 attribute "flink/taskmanager/num_taskslots",
-:display_name => "Override the default number of task slots (default = NoOfCPUs)",
-:type => 'string'
+          :description => "Override the default number of task slots (default = NoOfCPUs)",
+          :type => 'string'
 
 attribute "flink/hadoop/distribution",
-:display_name => "apache_hadoop (default) or hops",
-:type => 'string'
+          :description => "apache_hadoop (default) or hops",
+          :type => 'string'
