@@ -25,7 +25,7 @@ end
 
 apache_hadoop_hdfs_directory "#{node.flink.home}/conf/flink-conf.yaml" do
   action :put_as_superuser
-  owner node.hadoop_spark.user
+  owner node.flink.user
   group node.apache_hadoop.group
   mode "1775"
   dest "#{home}/#{node.flink.user}/flink-conf.yaml"

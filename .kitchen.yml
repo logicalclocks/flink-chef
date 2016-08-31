@@ -39,7 +39,7 @@ suites:
       #- recipe[flink::wordcount]
     attributes:
          java:
-            jdk_version: 7
+            jdk_version: 8
          vagrant: "true"
          ndb:
             mgmd:
@@ -78,6 +78,7 @@ suites:
             public_ips: ["10.0.2.15"]
          kagent:
             private_ips: ["10.0.2.15"]
+            enabled: "false"
          hopsworks:
             default:
                private_ips: ["10.0.2.15"]
