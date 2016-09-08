@@ -41,3 +41,4 @@ default.flink.jobmanager.public_key            = ""
 # Pick a hadoop distribution. Options are 'hops' and 'apache_hadoop'
 default.flink.hadoop.distribution              = "apache_hadoop"
 
+default.flink.connector.url                    = "http://central.maven.org/maven2/org/apache/flink/flink-connector-filesystem_#{node.flink.scala_version}/#{node.flink.version}/flink-connector-filesystem_#{node.flink.scala_version}-#{node.flink.version}.jar"

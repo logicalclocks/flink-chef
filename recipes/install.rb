@@ -88,3 +88,14 @@ end
    to "#{node.flink.home}/lib/flink-dist_" + node.flink.scala_version + "-#{node.flink.version}.jar"
  end
 
+
+connector=File.basename(node.flink.connector.url)
+ 
+remote_file "#{node.flink.home}/lib/#{connector}" do
+  source node.flink.connector.url
+  owner node.flink.user
+  group node.flink.group
+  mode 0644
+  action :create
+end
+   
