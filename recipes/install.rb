@@ -99,3 +99,14 @@ remote_file "#{node.flink.home}/lib/#{connector}" do
   action :create
 end
    
+
+kafkaUtil=File.basename(node.hops.kafka_util.url)
+ 
+remote_file "#{node.flink.home}/lib/#{kafkaUtil}" do
+  source node.hops.kafka_util.url
+  owner node.flink.user
+  group node.flink.group
+  mode 0644
+  action :create
+end
+   

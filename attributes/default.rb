@@ -42,3 +42,5 @@ default.flink.jobmanager.public_key            = ""
 default.flink.hadoop.distribution              = "apache_hadoop"
 
 default.flink.connector.url                    = "http://central.maven.org/maven2/org/apache/flink/flink-connector-filesystem_#{node.flink.scala_version}/#{node.flink.version}/flink-connector-filesystem_#{node.flink.scala_version}-#{node.flink.version}.jar"
+
+default.hops.kafka_util.url                    = "http://snurran.sics.se/hops/kafka-util-0.1.jar"
