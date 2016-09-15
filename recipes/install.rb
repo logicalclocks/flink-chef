@@ -13,11 +13,11 @@ group node.apache_hadoop.group do
 end
 
 user node.flink.user do
-  supports :manage_home => true
   action :create
   home "/home/#{node.flink.user}"
   system true
   shell "/bin/bash"
+  manage_home true
   not_if "getent passwd #{node.flink.user}"
 end
 
