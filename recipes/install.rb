@@ -89,24 +89,24 @@ end
  end
 
 
-connector=File.basename(node.flink.connector.url)
+#connector=File.basename(node.flink.connector.url)
  
-remote_file "#{node.flink.home}/lib/#{connector}" do
-  source node.flink.connector.url
-  owner node.flink.user
-  group node.flink.group
-  mode 0644
-  action :create
-end
+#remote_file "#{node.flink.home}/lib/#{connector}" do
+#  source node.flink.connector.url
+#  owner node.flink.user
+#  group node.flink.group
+#  mode 0644
+#  action :create
+#end
    
 
-kafkaUtil=File.basename(node.hops.kafka_util.url)
+#kafkaUtil=File.basename(node.hops.kafka_util.url)
  
-remote_file "#{node.flink.home}/lib/#{kafkaUtil}" do
-  source node.hops.kafka_util.url
-  owner node.flink.user
-  group node.flink.group
-  mode 0644
-  action :create
-end
+#remote_file "#{node.flink.home}/lib/#{kafkaUtil}" do
+#  source node.hops.kafka_util.url
+#  owner node.flink.user
+#  group node.flink.group
+#  mode 0644
+#  action :create
+#end
    

@@ -7,7 +7,7 @@ default.flink.group                            = node.apache_hadoop.group
 
 default.flink.version                          = "1.1.3" 
 
-default.flink.hadoop_version                   = "24"
+default.flink.hadoop_version                   = "27"
 default.flink.scala_version                    = "2.11"
 
 default.flink.dir                              = "/srv"
