@@ -44,6 +44,16 @@ remote_file cached_filename do
   action :create
 end
 
+directory node.flink.dir  do
+  owner node.flink.user
+  group node.flink.group
+  mode "755"
+  action :create
+  recursive true
+  not_if { File.directory?("#{node.flink.dir}") }
+end
+
+
 bash "unpack_flink" do
     user "root"
     code <<-EOF
