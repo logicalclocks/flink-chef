@@ -1,5 +1,7 @@
 dependencies: 
   - recipe: flink::install
+    local:  
+      - apache_hadoop::install
   - recipe: flink::taskmanager
     global:  
       - flink::jobmanager
