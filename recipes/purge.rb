@@ -38,3 +38,13 @@ link node[:flink][:dir] + "/flink" do
 end
 
 
+base_filename =  File.basename(node.flink.url)
+base_dirname =  File.basename(base_filename, ".tgz")
+cached_filename = "/tmp/#{base_filename}"
+
+
+file cached_filename do
+  action :delete
+  ignore_failure true
+end
+

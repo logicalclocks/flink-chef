@@ -5,10 +5,10 @@ include_attribute "hops"
 default.flink.user                             = "flink"
 default.flink.group                            = node.apache_hadoop.group
 
-default.flink.version                          = "1.0.3" 
+default.flink.version                          = "1.1.3" 
 
-default.flink.hadoop_version                   = "24"
-default.flink.scala_version                    = "2.10"
+default.flink.hadoop_version                   = "27"
+default.flink.scala_version                    = "2.11"
 
 default.flink.dir                              = "/srv"
 default.flink.home                             = "#{node.flink.dir}/flink-#{node.flink.version}"
