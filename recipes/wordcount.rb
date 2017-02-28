@@ -1,7 +1,7 @@
 libpath = File.expand_path '../../../kagent/libraries', __FILE__
 
 begin
-  master_ip = private_recipe_ip("apache_hadoop","nn")
+  master_ip = private_recipe_ip("hops","nn")
 rescue
   master_ip = private_recipe_ip("hops","nn")
 end
@@ -11,14 +11,14 @@ remote_file "#{Chef::Config.file_cache_path}/apache.txt" do
 end
 
 
-apache_hadoop_hdfs_directory "#{Chef::Config.file_cache_path}/apache.txt" do
+hops_hdfs_directory "#{Chef::Config.file_cache_path}/apache.txt" do
   action :put
   dest "/user/#{node.flink.user}"
   owner node.flink.user
   mode "775"
 end
 
-nn="#{master_ip}:#{node.apache_hadoop.nn.port}"
+nn="#{master_ip}:#{node.hops.nn.port}"
 
  bash 'wordcount-example' do
   user node.flink.user

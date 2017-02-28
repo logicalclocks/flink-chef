@@ -9,9 +9,7 @@ dependencies:
     global:  
       - flink::taskmanager
       - hops::dn
-      - apache_hadoop::dn
   - recipe: flink::yarn
     global:
-      - apache_hadoop::dn
       - hops::dn
 
