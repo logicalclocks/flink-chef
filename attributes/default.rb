@@ -1,6 +1,5 @@
 include_attribute "kagent"
 include_attribute "hops"
-include_attribute "hops"
 
 default.flink.user                             = "flink"
 default.flink.group                            = node.hops.group
