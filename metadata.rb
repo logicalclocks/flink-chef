@@ -15,7 +15,6 @@ recipe           "taskmanager",   "Starts a Flink Slave in standalone mode"
 recipe           "wordcount",   "Prepares wordcount example using HDFS"
 recipe           "purge",   "Remove and delete Flink"
 
-depends          "apache_hadoop"
 depends          "hops"
 depends          "kagent"
 depends          "java"
