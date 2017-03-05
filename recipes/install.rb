@@ -7,9 +7,9 @@ end
 
 include_recipe "java"
 
-# group node.apache_hadoop.group do
+# group node.hops.group do
 #   action :create
-#   not_if "getent group #{node.apache_hadoop.group}"
+#   not_if "getent group #{node.hops.group}"
 # end
 
 user node.flink.user do
@@ -21,7 +21,7 @@ user node.flink.user do
   not_if "getent passwd #{node.flink.user}"
 end
 
-group node.apache_hadoop.group do
+group node.hops.group do
   action :modify
   members ["#{node.flink.user}"]
   append true

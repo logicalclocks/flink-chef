@@ -1,9 +1,8 @@
 include_attribute "kagent"
-include_attribute "apache_hadoop"
 include_attribute "hops"
 
 default.flink.user                             = "flink"
-default.flink.group                            = node.apache_hadoop.group
+default.flink.group                            = node.hops.group
 
 default.flink.version                          = "1.1.3" 
 
@@ -38,8 +37,8 @@ default.flink.pid_dir                          = "/tmp"
 default.flink.jobmanager.public_key            = ""
 
 
-# Pick a hadoop distribution. Options are 'hops' and 'apache_hadoop'
-default.flink.hadoop.distribution              = "apache_hadoop"
+# Pick a hadoop distribution. Options are 'hops' and 'hops'
+default.flink.hadoop.distribution              = "hops"
 
 default.flink.connector.url                    = "http://central.maven.org/maven2/org/apache/flink/flink-connector-filesystem_#{node.flink.scala_version}/#{node.flink.version}/flink-connector-filesystem_#{node.flink.scala_version}-#{node.flink.version}.jar"
 
