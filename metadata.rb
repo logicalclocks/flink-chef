@@ -8,9 +8,9 @@ version          "0.1.3"
 source_url       'https://github.com/hopshadoop/flink-chef'
 
 recipe           "install", "Installs Apache Flink"
+recipe           "yarn",  "Sets up flink for running on YARN"
 #link:<a target='_blank' href='http://%host%:8088/'>Launch the WebUI for the Flink JobManager</a>
 recipe           "jobmanager",  "Starts a Flink JobManager in standalone mode"
-recipe           "yarn",  "Sets up flink for running on YARN"
 recipe           "taskmanager",   "Starts a Flink Slave in standalone mode"
 recipe           "wordcount",   "Prepares wordcount example using HDFS"
 recipe           "purge",   "Remove and delete Flink"
