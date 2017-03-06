@@ -7,13 +7,14 @@ end
 
 include_recipe "java"
 
-# group node.hops.group do
-#   action :create
-#   not_if "getent group #{node.hops.group}"
-# end
+group node.flink.group do
+  action :create
+  not_if "getent group #{node.flink.group}"
+end
 
 user node.flink.user do
   action :create
+  gid node.flink.group
   home "/home/#{node.flink.user}"
   system true
   shell "/bin/bash"
