@@ -63,3 +63,7 @@ attribute "flink/taskmanager/num_taskslots",
 attribute "flink/hadoop/distribution",
           :description => "apache_hadoop (default) or hops",
           :type => 'string'
+
+attribute "install/dir",
+          :description => "Set to a base directory under which we will install.",
+          :type => "string"
