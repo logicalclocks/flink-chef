@@ -9,7 +9,7 @@ default.flink.version                          = "1.1.3"
 default.flink.hadoop_version                   = "27"
 default.flink.scala_version                    = "2.11"
 
-default.flink.dir                              = node.install.dir.empty? ? node.install.dir : "/srv"
+default.flink.dir                              = node.install.dir.empty? ? "/srv" : node.install.dir
 default.flink.home                             = "#{node.flink.dir}/flink-#{node.flink.version}"
 default.flink.url  = node.download_url + "/flink-" + node.flink.version + "-bin-hadoop" + node.flink.hadoop_version + "-scala_" + node.flink.scala_version + ".tgz"
 default.flink.conf_dir                         = "#{node.flink.home}/conf"
