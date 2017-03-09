@@ -50,7 +50,6 @@ directory node.flink.dir  do
   group node.flink.group
   mode "755"
   action :create
-  recursive true
   not_if { File.directory?("#{node.flink.dir}") }
 end
 
