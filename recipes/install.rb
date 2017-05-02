@@ -33,8 +33,8 @@ Chef::Log.info "Download URL:  #{url}"
 
 base_filename =  File.basename(node.flink.url)
 base_dirname =  File.basename(base_filename, ".tgz")
-flink_dirname = "/tmp/#{base_dirname}"
-cached_filename = "/tmp/#{base_filename}"
+flink_dirname = "#{Chef::Config[:file_cache_path]}/#{base_dirname}"
+cached_filename = "#{Chef::Config[:file_cache_path]}/#{base_filename}"
 
 Chef::Log.info "You should find flink binaries in:  #{cached_filename}"
 
@@ -86,11 +86,6 @@ template "#{node.flink.home}/conf/flink-conf.yaml" do
             })
 end
 
-
-file "#{node.flink.home}/flink.jar" do
-  action :delete
-  force_unlink true  
-end
 
  link "#{node.flink.home}/flink.jar" do
    owner node.flink.user
