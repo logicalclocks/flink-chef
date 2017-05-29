@@ -12,9 +12,10 @@ end
 
 
 hops_hdfs_directory "#{Chef::Config.file_cache_path}/apache.txt" do
-  action :put
+  action :put_as_superuser
   dest "/user/#{node.flink.user}"
   owner node.flink.user
+  group node.flink.group
   mode "775"
 end
 
