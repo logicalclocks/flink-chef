@@ -1,8 +1,8 @@
 include_attribute "kagent"
 include_attribute "hops"
 
-default.flink.user                             = "flink"
-default.flink.group                            = node.hops.group
+default.flink.user                             = node.install.user.empty? ? "flink" : node.install.user
+default.flink.group                            = node.install.user.empty? ? node.hops.group : node.install.user
 
 default.flink.version                          = "1.1.3" 
 

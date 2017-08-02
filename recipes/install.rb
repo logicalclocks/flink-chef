@@ -50,7 +50,6 @@ directory node.flink.dir  do
   group node.flink.group
   mode "755"
   action :create
-  recursive true
   not_if { File.directory?("#{node.flink.dir}") }
 end
 
@@ -87,11 +86,6 @@ template "#{node.flink.home}/conf/flink-conf.yaml" do
             })
 end
 
-
-file "#{node.flink.home}/flink.jar" do
-  action :delete
-  force_unlink true  
-end
 
  link "#{node.flink.home}/flink.jar" do
    owner node.flink.user
