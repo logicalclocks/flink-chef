@@ -62,7 +62,8 @@ bash "unpack_flink" do
     if [ -L #{node.flink.dir}/flink  ; then
        rm -rf #{node.flink.dir}/flink
     fi
-    chown -R #{node.flink.user} #{node.flink.home}
+    chown -R #{node.flink.user}:#{node.flink.group} #{node.flink.home}
+    chmod 750 #{node.flink.home}
     ln -s #{node.flink.home} #{node.flink.dir}/flink
     chown #{node.flink.user} #{node.flink.dir}/flink
     EOF
