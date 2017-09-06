@@ -5,8 +5,8 @@ end
 
 template "/etc/init.d/webclient" do
   source "webclient.erb"
-  owner node.flink.user
-  group node.flink.group
+  owner node['flink']['user']
+  group node['flink']['group']
   mode 0754
   notifies :restart, resources(:service => "webclient")
 end

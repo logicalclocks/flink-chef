@@ -10,10 +10,10 @@
 ### END INIT INFO
 
 # Variables
-START_PROG="<%= "#{node.flink.home}/bin/webclient.sh start" %>"
-STOP_PROG="<%= "#{node.flink.home}/bin/webclient.sh stop" %>"
+START_PROG="<%= "#{node['flink']['home']}/bin/webclient.sh start" %>"
+STOP_PROG="<%= "#{node['flink']['home']}/bin/webclient.sh stop" %>"
 
-EXEC_WITH_USER="su <%= node.flink.user %> -l -c"
+EXEC_WITH_USER="su <%= node['flink']['user'] %> -l -c"
 
 RETVAL=0
 
@@ -43,7 +43,7 @@ restart() {
 }
 
 status() {  
-  PID_FILE=<%= "#{node.flink.pid_dir}/flink-#{node.flink.user}-webclient.pid" %> 
+  PID_FILE=<%= "#{node['flink']['pid_dir']}/flink-#{node['flink']['user']}-webclient.pid" %> 
   if [ -f $PID_FILE  ; then
      PID=`cat $PID_FILE`
      kill -0 $PID

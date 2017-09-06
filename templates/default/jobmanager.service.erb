@@ -3,11 +3,11 @@ Description = Taskmanager, worker for Flink.
 After = syslog.target network.target remote-fs.target
 
 [Service]
-User = <%= node.flink.user %>
+User = <%= node['flink']['user'] %>
 
-PIDFile = /tmp/flink-<%= node.flink.user %>-jobmanager.pid
-ExecStart = <%= node.flink.home %>/bin/jobmanager.sh start cluster batch
-ExecStop = <%= node.flink.home %>/bin/jobmanager.sh stop
+PIDFile = /tmp/flink-<%= node['flink']['user'] %>-jobmanager.pid
+ExecStart = <%= node['flink']['home'] %>/bin/jobmanager.sh start cluster batch
+ExecStop = <%= node['flink']['home'] %>/bin/jobmanager.sh stop
 
 Type = forking
 

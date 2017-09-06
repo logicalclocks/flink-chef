@@ -26,19 +26,19 @@ daemons.each { |d|
   end
 }
 
-directory node[:flink][:home] do
+directory node['flink']['home'] do
   recursive true
   action :delete
   ignore_failure true
 end
 
-link node[:flink][:dir] + "/flink" do
+link node['flink']['dir'] + "/flink" do
   action :delete
   ignore_failure true
 end
 
 
-base_filename =  File.basename(node.flink.url)
+base_filename =  File.basename(node['flink']['url'])
 base_dirname =  File.basename(base_filename, ".tgz")
 cached_filename = "/tmp/#{base_filename}"
 

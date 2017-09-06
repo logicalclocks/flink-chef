@@ -23,23 +23,23 @@
 
 jobmanager.rpc.address: <%= @jobmanager_ip %>
 
-jobmanager.rpc.port: <%= node.flink.jobmanager.rpc_port %>
+jobmanager.rpc.port: <%= node['flink']['jobmanager']['rpc_port'] %>
 
-jobmanager.heap.mb: <%= node.flink.jobmanager.heap_mbs %>
+jobmanager.heap.mb: <%= node['flink']['jobmanager']['heap_mbs'] %>
 
-taskmanager.heap.mb: <%= node.flink.taskmanager.heap_mbs %>
+taskmanager.heap.mb: <%= node['flink']['taskmanager']['heap_mbs'] %>
 
-taskmanager.num_taskslots: <%= node.flink.taskmanager.num_taskslots %>
+taskmanager.num_taskslots: <%= node['flink']['taskmanager']['num_taskslots'] %>
 
-parallelization.degree.default: <%= node.flink.parallelization.degree %>
+parallelization.degree.default: <%= node['flink']['parallelization']['degree'] %>
 
 #==============================================================================
 # Web Frontend
 #==============================================================================
 
-jobmanager.web.port: <%= node.flink.jobmanager.web_port %>
+jobmanager.web.port: <%= node['flink']['jobmanager']['web_port'] %>
 
-webclient.port: <%= node.flink.webclient_port %>
+webclient.port: <%= node['flink']['webclient_port'] %>
 
 #==============================================================================
 # Streaming state checkpointing
@@ -56,18 +56,18 @@ state.backend: jobmanager
 # Note: State backend must be accessible from the JobManager, use file://
 # only for local setups. 
 #
-state.backend.fs.checkpointdir: hdfs://user/<%= node.flink.user %>/checkpoints 
+state.backend.fs.checkpointdir: hdfs://user/<%= node['flink']['user'] %>/checkpoints 
 
 
 #==============================================================================
 # Advanced
 #==============================================================================
 
-env.pid.dir = <%= node.flink.pid_dir %>
+env.pid.dir = <%= node['flink']['pid_dir'] %>
 
 # The number of buffers for the network stack.
 #
-taskmanager.network.numberOfBuffers: <%= node.flink.taskmanager.network_num_buffers %>
+taskmanager.network.numberOfBuffers: <%= node['flink']['taskmanager']['network_num_buffers'] %>
 
 # Directories for temporary files.
 #
@@ -94,4 +94,4 @@ taskmanager.tmp.dirs: /tmp
 # You can also directly specify the paths to hdfs-default.xml and hdfs-site.xml
 # via keys 'fs.hdfs.hdfsdefault' and 'fs.hdfs.hdfssite'.
 #
-fs.hdfs.hadoopconf: <%= node.hops.conf_dir %>
+fs.hdfs.hadoopconf: <%= node['hops']['conf_dir'] %>
