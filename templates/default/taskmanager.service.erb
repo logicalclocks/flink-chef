@@ -3,11 +3,11 @@ Description = Taskmanager, worker for Flink.
 After = syslog.target network.target remote-fs.target
 
 [Service]
-User = <%= node.flink.user %>
+User = <%= node['flink']['user'] %>
 
-PIDFile = <%= node.flink.logs_dir %>/hadoop-<%= node.hops.hdfs.user %>-namenode.pid
-ExecStart = <%= node.flink.home %>/sbin/start-nn.sh
-ExecStop = <%= node.flink.home %>/sbin/stop-nn.sh
+PIDFile = <%= node['flink']['logs_dir'] %>/hadoop-<%= node['hops']['hdfs']['user'] %>-namenode.pid
+ExecStart = <%= node['flink']['home'] %>/sbin/start-nn.sh
+ExecStop = <%= node['flink']['home'] %>/sbin/stop-nn.sh
 
 Type = forking
 

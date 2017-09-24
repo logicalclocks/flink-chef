@@ -11,15 +11,15 @@
 
 # Variables
 <% mode=@flavor -%>
-START_PROG="<%= "#{node.flink.home}/bin/jobmanager.sh start cluster" %>"
-STOP_PROG="<%= "#{node.flink.home}/bin/jobmanager.sh stop" %>"
+START_PROG="<%= "#{node['flink']['home']}/bin/jobmanager.sh start cluster" %>"
+STOP_PROG="<%= "#{node['flink']['home']}/bin/jobmanager.sh stop" %>"
 
-EXEC_WITH_USER="su <%= node.flink.user %> -l -c"
+EXEC_WITH_USER="su <%= node['flink']['user'] %> -l -c"
 
 RETVAL=0
 
 status() {  
-  PID_FILE=<%= "#{node.flink.pid_dir}/flink-#{node.flink.user}-jobmanager.pid" %> 
+  PID_FILE=<%= "#{node['flink']['pid_dir']}/flink-#{node['flink']['user']}-jobmanager.pid" %> 
   if [ -f $PID_FILE ]  ; then
      PID=`cat $PID_FILE`
      kill -0 $PID
