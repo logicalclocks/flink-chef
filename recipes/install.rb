@@ -15,10 +15,8 @@ end
 user node['flink']['user'] do
   action :create
   gid node['flink']['group']
-  #home "/home/#{node['flink']['user']}"
   system true
   shell "/bin/false"
-  #manage_home true
   not_if "getent passwd #{node['flink']['user']}"
 end
 
