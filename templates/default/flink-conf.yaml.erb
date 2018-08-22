@@ -18,20 +18,10 @@
 
 
 #==============================================================================
-# Common
+# Queryable state
 #==============================================================================
-
-jobmanager.rpc.address: <%= @jobmanager_ip %>
-
-jobmanager.rpc.port: <%= node['flink']['jobmanager']['rpc_port'] %>
-
-jobmanager.heap.mb: <%= node['flink']['jobmanager']['heap_mbs'] %>
-
-taskmanager.heap.mb: <%= node['flink']['taskmanager']['heap_mbs'] %>
-
-taskmanager.num_taskslots: <%= node['flink']['taskmanager']['num_taskslots'] %>
-
-parallelization.degree.default: <%= node['flink']['parallelization']['degree'] %>
+query.proxy.ports: 50100-50200
+query.server.ports: 50201-50300
 
 #==============================================================================
 # Web Frontend
@@ -52,18 +42,12 @@ webclient.port: <%= node['flink']['webclient_port'] %>
 
 state.backend: jobmanager
 
-# Directory for storing checkpoints in a flink supported filesystem
-# Note: State backend must be accessible from the JobManager, use file://
-# only for local setups. 
-#
-state.backend.fs.checkpointdir: hdfs://user/<%= node['flink']['user'] %>/checkpoints 
-
 
 #==============================================================================
 # Advanced
 #==============================================================================
 
-env.pid.dir = <%= node['flink']['pid_dir'] %>
+env.pid.dir: /tmp
 
 # The number of buffers for the network stack.
 #
@@ -83,15 +67,21 @@ taskmanager.network.numberOfBuffers: <%= node['flink']['taskmanager']['network_n
 # If not specified, the system-specific Java temporary directory (java.io.tmpdir
 # property) is taken.
 #
-taskmanager.tmp.dirs: /tmp
+io.tmp.dirs: ${LOCAL_DIRS}
+web.upload.dir: ${LOCAL_DIRS}
+web.tmpdir: ${LOCAL_DIRS}
 
-# Path to the Hadoop configuration directory.
-#
-# This configuration is used when writing into HDFS. Unless specified otherwise,
-# HDFS file creation will use HDFS default settings with respect to block-size,
-# replication factor, etc.
-#
-# You can also directly specify the paths to hdfs-default.xml and hdfs-site.xml
-# via keys 'fs.hdfs.hdfsdefault' and 'fs.hdfs.hdfssite'.
-#
-fs.hdfs.hadoopconf: <%= node['hops']['conf_dir'] %>
+#==============================================================================
+# History server
+#==============================================================================
+
+historyserver.web.port: <%= node['flink']['historyserver']['port'] %>
+
+env.hadoop.conf.dir: <%= node['hops']['conf_dir'] %>
+
+historyserver.archive.fs.dir: hdfs://<%= node['flink']['historyserver']['remote_dir'] %>
+
+historyserver.web.tmpdir: <%= node['flink']['historyserver']['tmp'] %>
+
+jobmanager.archive.fs.dir: hdfs://<%= node['flink']['historyserver']['remote_dir'] %>
+

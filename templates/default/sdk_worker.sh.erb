@@ -1,0 +1,28 @@
+#!/bin/bash
+{
+
+  export CLASSPATH="$CLASSPATH:<%= @hadoop_glob %>"
+  export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${JAVA_HOME}/jre/lib/amd64/server
+  export PATH=$PATH:${HADOOP_HOME}/bin
+
+  delimiter="__"
+  #Concate the delimiter with the main string
+  string=$USER$delimiter
+  #Split the text based on the delimiter
+  project_name=()
+  while [[ $string ]]; do
+  project_name+=( "${string%%"$delimiter"*}" )
+  string=${string#*"$delimiter"}
+  done
+  # Find if project's environment exists
+  project_exists=$(ls /srv/hops/anaconda/anaconda/envs/ | grep ${project_name})
+
+  env_name="python27"
+  if [[ -n "$project_exists" ]]
+  then
+    env_name=$project_name
+  fi
+
+  bash -c "source /srv/hops/anaconda/anaconda/bin/activate /srv/hops/anaconda/anaconda/envs/$env_name && <%= node['flink']['conf_dir'] %>/boot $* >> $LOG_DIRS/beamsdkworker-$project_name-$CONTAINER_ID.log 2>&1 "
+  exit
+}

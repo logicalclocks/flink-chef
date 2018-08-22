@@ -8,25 +8,21 @@ hops_hdfs_directory "#{home}/#{node['flink']['user']}" do
   mode "1777"
 end
 
-hops_hdfs_directory "#{home}/#{node['flink']['user']}/checkpoints" do
-  action :create_as_superuser
-  owner node['flink']['user']
-  group node['flink']['group']
-  mode "1777"
+ruby_block "hadoop_glob" do
+  block do
+    Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)
+    node.default['hadoop_glob'] = shell_out("#{node['hops']['bin_dir']}/hadoop classpath --glob  | tr -d '\n'").stdout
+  end
+  action :create
 end
 
-hops_hdfs_directory "#{node['flink']['home']}/flink.jar" do
-  action :put_as_superuser
-  owner node['flink']['user']
-  group node['hops']['group']
-  mode "1755"
-  dest "#{home}/#{node['flink']['user']}/flink.jar"
+template "#{node['flink']['conf_dir']}/sdk_worker.sh" do
+    source "sdk_worker.sh.erb"
+    owner node['flink']['user']
+    group node['flink']['group']
+    mode 0755
+    variables({
+      :hadoop_glob=> lazy { node['hadoop_glob'] }
+    })
 end
 
-hops_hdfs_directory "#{node['flink']['home']}/conf/flink-conf.yaml" do
-  action :put_as_superuser
-  owner node['flink']['user']
-  group node['hops']['group']
-  mode "1775"
-  dest "#{home}/#{node['flink']['user']}/flink-conf.yaml"
-end

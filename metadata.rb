@@ -1,6 +1,6 @@
 name             "flink"
-maintainer       "Jim Dowling"
-maintainer_email "jdowling@sics.se"
+maintainer       "Theofilos Kakantousis"
+maintainer_email "theo@logicalclocks.com"
 license          "Apache v 2.0"
 description      'Installs/Configures Standalone Apache Flink'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
@@ -8,11 +8,9 @@ version          "1.0.0"
 source_url       'https://github.com/hopshadoop/flink-chef'
 
 recipe           "install", "Installs Apache Flink"
-recipe           "yarn",  "Sets up flink for running on YARN"
-#link:<a target='_blank' href='http://%host%:8088/'>Launch the WebUI for the Flink JobManager</a>
-recipe           "jobmanager",  "Starts a Flink JobManager in standalone mode"
-recipe           "taskmanager",   "Starts a Flink Slave in standalone mode"
-recipe           "wordcount",   "Prepares wordcount example using HDFS"
+recipe           "default", "Default recipe runs on all machines, needed to invoke install."
+recipe           "yarn",    "Sets up flink for running on YARN"
+recipe           "historyserver", "Sets up flink history server"
 recipe           "purge",   "Remove and delete Flink"
 
 depends          "hops"
@@ -51,14 +49,36 @@ attribute "flink/taskmanager/num_taskslots",
           :description => "Override the default number of task slots (default = NoOfCPUs)",
           :type => 'string'
 
-attribute "flink/hadoop/distribution",
-          :description => "apache_hadoop (default) or hops",
-          :type => 'string'
-
 attribute "install/dir",
           :description => "Set to a base directory under which we will install.",
           :type => "string"
 
 attribute "install/user",
           :description => "User to install the services as",
+          :type => "string"
+
+#History server
+attribute "flink/historyserver/local_dir",
+          :description => "Dir to store the completed jobs files on local machine",
+          :type => 'string'
+
+attribute "flink/historyserver/remote_dir",
+          :description => "Dir to store the completed jobs files on remote filesystem",
+          :type => 'string'
+
+attribute "flink/historyserver/logs",
+          :description => "Log dir for flink history server",
+          :type => 'string'
+
+attribute "flink/historyserver/tmp",
+          :description => "Dir to store temp files of flink history server",
+          :type => 'string'
+
+attribute "flink/historyserver/port",
+          :description => "Port of flink history server web UI",
+          :type => 'string'
+
+#Beam
+attribute "beamjobserver_jar/url",
+          :description => "Download beam flink job server url",
           :type => "string"
