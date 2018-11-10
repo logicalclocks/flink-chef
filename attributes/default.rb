@@ -4,7 +4,7 @@ include_attribute "hops"
 default['flink']['user']                             = node['install']['user'].empty? ? "flink" : node['install']['user']
 default['flink']['group']                            = node['install']['user'].empty? ? node['hops']['group'] : node['install']['user']
 
-default['flink']['version']                          = "1.1.3" 
+default['flink']['version']                          = "1.1.3"
 
 default['flink']['hadoop_version']                   = "27"
 default['flink']['scala_version']                    = "2.11"
@@ -41,5 +41,3 @@ default['flink']['jobmanager']['public_key']            = ""
 default['flink']['hadoop']['distribution']              = "hops"
 
 default['flink']['connector']['url']                    = "http://central.maven.org/maven2/org/apache/flink/flink-connector-filesystem_#{node['flink']['scala_version']}/#{node['flink']['version']}/flink-connector-filesystem_#{node['flink']['scala_version']}-#{node['flink']['version']}.jar"
-
-default['hops']['kafka_util']['url']                    = "http://snurran.sics.se/hops/kafka-util-0.1.jar"
