@@ -23,15 +23,6 @@ depends          "java"
   supports os
 end
 
-
-attribute "java/jdk_version",
-          :description =>  "Jdk version",
-          :type => 'string'
-
-attribute "java/install_flavor",
-          :description =>  "Oracle (default) or openjdk",
-          :type => 'string'
-
 attribute "flink/user",
           :description => "Username to run flink jobmgr/task as",
           :type => 'string'
