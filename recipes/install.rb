@@ -10,6 +10,7 @@ include_recipe "java"
 group node['flink']['group'] do
   action :create
   not_if "getent group #{node['flink']['group']}"
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
 user node['flink']['user'] do
@@ -18,12 +19,14 @@ user node['flink']['user'] do
   system true
   shell "/bin/false"
   not_if "getent passwd #{node['flink']['user']}"
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
 group node['hops']['group'] do
   action :modify
   members ["#{node['flink']['user']}"]
   append true
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
 end 
 
 url = node['flink']['url']
