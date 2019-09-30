@@ -2,14 +2,11 @@ dependencies:
   - recipe: flink::install
     global:  
       - kagent::install
-  - recipe: flink::taskmanager
-    global:  
-      - flink::jobmanager
-  - recipe: flink::wordcount
-    global:  
-      - flink::taskmanager
-      - hops::dn
+      - hops::install
   - recipe: flink::yarn
     global:
       - hops::dn
+  - recipe: flink::historyserver
+    global:
+      - flink::yarn
 

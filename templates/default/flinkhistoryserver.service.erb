@@ -1,0 +1,15 @@
+[Unit]
+Description = Flink historyserver
+After = syslog.target network.target remote-fs.target <%= @deps %>
+
+[Service]
+User = <%= node['flink']['user'] %>
+EnvironmentFile=<%= node['flink']['historyserver']['environment'] %>
+PIDFile = /tmp/flink-<%= node['flink']['user'] %>-historyserver.pid
+ExecStart = <%= node['flink']['base_dir'] %>/bin/historyserver.sh start
+ExecStop = <%= node['flink']['base_dir'] %>/bin/historyserver.sh stop
+LimitNOFILE = 50000
+Type = forking
+
+[Install]
+WantedBy = multi-user.target
