@@ -3,6 +3,7 @@ include_recipe "java"
 group node['hops']['group'] do
   action :create
   not_if "getent group #{node['hops']['group']}"
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
 user node['hops']['hdfs']['user'] do
@@ -13,11 +14,13 @@ user node['hops']['hdfs']['user'] do
   manage_home true
   action :create
   not_if "getent passwd #{node['hops']['hdfs']['user']}"
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
 group node['hops']['hdfs']['user'] do
   action :create
   not_if "getent group #{node['hops']['hdfs']['user']}"
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
 group node['flink']['group'] do

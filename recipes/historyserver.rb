@@ -2,6 +2,7 @@ group node['kagent']['certs_group'] do
   action :modify
   members ["#{node['flink']['user']}"]
   append true
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
 completed_jobs_dir = "#{node['flink']['historyserver']['remote_dir']}"
