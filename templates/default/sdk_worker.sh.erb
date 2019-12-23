@@ -14,8 +14,10 @@
   project_name+=( "${string%%"$delimiter"*}" )
   string=${string#*"$delimiter"}
   done
-  env_name=$(echo $_DYNAMIC_PROPERTIES | awk '{split($0, a, "@@"); print(a[1]);}' | awk '{split($0, a, "="); print(a[2]);}')
-
+  env_name="python36"
+  if [ -d "/srv/hops/anaconda/anaconda/envs/$project_name" ]; then
+    $env_name=$project_name
+  fi
   bash -c "source /srv/hops/anaconda/anaconda/bin/activate /srv/hops/anaconda/anaconda/envs/$env_name && <%= node['flink']['conf_dir'] %>/boot $* >> $LOG_DIRS/beamsdkworker-$project_name-$CONTAINER_ID.log 2>&1 "
   exit
 }
