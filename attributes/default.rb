@@ -4,7 +4,7 @@ include_attribute "hops"
 default['flink']['user']                             = node['install']['user'].empty? ? "flink" : node['install']['user']
 default['flink']['group']                            = node['install']['user'].empty? ? node['hops']['group'] : node['install']['user']
 
-default['flink']['version_base']                     = "1.8"
+default['flink']['version_base']                     = "1.9"
 default['flink']['version_bugfix']                   = "1"
 default['flink']['version']                          = node['flink']['version_base'] + "." + node['flink']['version_bugfix']
 default['flink']['scala_version']                    = "2.11"
