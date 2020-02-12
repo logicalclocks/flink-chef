@@ -5,7 +5,7 @@ default['flink']['user']                             = node['install']['user'].e
 default['flink']['group']                            = node['install']['user'].empty? ? node['hops']['group'] : node['install']['user']
 
 default['flink']['version_base']                     = "1.9"
-default['flink']['version_bugfix']                   = "1"
+default['flink']['version_bugfix']                   = "2"
 default['flink']['version']                          = node['flink']['version_base'] + "." + node['flink']['version_bugfix']
 default['flink']['scala_version']                    = "2.11"
 
