@@ -14,6 +14,10 @@ recipe           "historyserver", "Sets up flink history server"
 recipe           "purge",   "Remove and delete Flink"
 
 depends 'java', '~> 7.0.0'
+depends 'conda'
+depends 'kagent'
+depends 'hops'
+depends 'ndb'
 
 %w{ ubuntu debian rhel centos }.each do |os|
   supports os
