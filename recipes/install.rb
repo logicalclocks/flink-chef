@@ -1,6 +1,7 @@
 include_recipe "java"
 
 group node['hops']['group'] do
+  gid node['hops']['group_id']
   action :create
   not_if "getent group #{node['hops']['group']}"
   not_if { node['install']['external_users'].casecmp("true") == 0 }
@@ -23,15 +24,9 @@ group node['hops']['hdfs']['user'] do
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
-group node['flink']['group'] do
-  action :create
-  not_if "getent group #{node['flink']['group']}"
-  not_if { node['install']['external_users'].casecmp("true") == 0 }
-end
-
 user node['flink']['user'] do
   action :create
-  gid node['flink']['group']
+  gid node['hops']['group']
   system true
   shell "/bin/false"
   not_if "getent passwd #{node['flink']['user']}"
@@ -62,7 +57,7 @@ end
 
 directory node['flink']['dir']  do
   owner node['flink']['user']
-  group node['flink']['group']
+  group node['hops']['group']
   mode "755"
   action :create
   not_if { File.directory?("#{node['flink']['dir']}") }
@@ -70,7 +65,7 @@ end
 
 directory node['flink']['historyserver']['local_dir']  do
   owner node['flink']['user']
-  group node['flink']['group']
+  group node['hops']['group']
   mode "700"
   action :create
   not_if { File.directory?("#{node['flink']['historyserver']['local_dir']}") }
@@ -78,7 +73,7 @@ end
 
 directory node['flink']['historyserver']['logs']  do
   owner node['flink']['user']
-  group node['flink']['group']
+  group node['hops']['group']
   mode "700"
   action :create
   not_if { File.directory?("#{node['flink']['historyserver']['logs']}") }
@@ -86,7 +81,7 @@ end
 
 directory node['flink']['historyserver']['tmp']  do
   owner node['flink']['user']
-  group node['flink']['group']
+  group node['hops']['group']
   mode "700"
   action :create
   not_if { File.directory?("#{node['flink']['historyserver']['tmp']}") }
@@ -101,7 +96,7 @@ bash "unpack_flink" do
     if [ -L #{node['flink']['dir']}/flink  ; then
        rm -rf #{node['flink']['dir']}/flink
     fi
-    chown -R #{node['flink']['user']}:#{node['flink']['group']} #{node['flink']['home']}
+    chown -R #{node['flink']['user']}:#{node['hops']['group']} #{node['flink']['home']}
     chmod 750 #{node['flink']['home']}
     ln -s #{node['flink']['home']} #{node['flink']['dir']}/flink
     chown #{node['flink']['user']} #{node['flink']['dir']}/flink
@@ -119,21 +114,21 @@ end
 template "#{node['flink']['base_dir']}/conf/flink-conf.yaml" do
     source "flink-conf.yaml.erb"
     owner node['flink']['user']
-    group node['flink']['group']
+    group node['hops']['group']
     mode 0775
 end
 
 template "#{node['flink']['base_dir']}/conf/log4j.properties" do
     source "log4j.properties.erb"
     owner node['flink']['user']
-    group node['flink']['group']
+    group node['hops']['group']
     mode 0644
 end
 
 remote_file "#{node['flink']['conf_dir']}/boot" do
     source "#{node['flink']['beam_boot']['url']}"
     owner node['flink']['user']
-    group node['flink']['group']
+    group node['hops']['group']
     mode "0755"
     action :create
 end
@@ -141,13 +136,13 @@ end
 remote_file "#{node['flink']['conf_dir']}/#{node['flink']['beamjobserver_name']}" do
   source "#{node['flink']['beamjobserver_jar']['url']}"
   owner node['flink']['user']
-  group node['flink']['group']
+  group node['hops']['group']
   mode "0755"
   action :create
 end
 
 link "#{node['flink']['home']}/flink.jar" do
     owner node['flink']['user']
-    group node['flink']['group']
+    group node['hops']['group']
     to "#{node['flink']['home']}/lib/flink-dist_" + node['flink']['scala_version'] + "-#{node['flink']['version']}.jar"
 end
