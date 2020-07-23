@@ -42,6 +42,14 @@ group node['hops']['group'] do
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end 
 
+group node["kagent"]["certs_group"] do
+  action :manage
+  append true
+  excluded_members node['flink']['user']
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
+  only_if { conda_helpers.is_upgrade }
+end
+
 url = node['flink']['url']
 Chef::Log.info "Download URL:  #{url}"
 
