@@ -6,6 +6,7 @@ After = syslog.target network.target remote-fs.target <%= @deps %>
 User = <%= node['flink']['user'] %>
 EnvironmentFile=<%= node['flink']['historyserver']['environment'] %>
 PIDFile = /tmp/flink-<%= node['flink']['user'] %>-historyserver.pid
+ExecStartPre=/bin/bash -c 'while ! /usr/bin/host <%= @nn_rpc_endpoint %> ; do if systemctl list-units --full -all | grep -Fq 'namenode'; then if systemctl is-active --quiet namenode; then /bin/sleep 5; else ! break; fi; else /bin/sleep 5; fi;  done'
 ExecStart = <%= node['flink']['base_dir'] %>/bin/historyserver.sh start
 ExecStop = <%= node['flink']['base_dir'] %>/bin/historyserver.sh stop
 LimitNOFILE = 50000
