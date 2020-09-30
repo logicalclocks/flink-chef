@@ -58,8 +58,9 @@ template systemd_script do
     group "root"
     mode 0754
     variables({
-      :deps=> deps
-              })
+      :deps=> deps,
+      :nn_rpc_endpoint => consul_helper.get_service_fqdn("namenode")
+    })
     if node["services"]["enabled"] == "true"
       notifies :enable, resources(:service => service_name)
     end
