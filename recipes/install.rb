@@ -151,7 +151,7 @@ remote_file "#{node['flink']['lib_dir']}/#{node['flink']['beamjobserver_name']}"
   action :create
 end
 
-remote_file "#{node['flink']['lib_dir']}/#{node['flink']['service_discovery_client']}" do
+remote_file "#{node['flink']['lib_dir']}/#{node['flink']['service_discovery_client']['name']}" do
   source "#{node['flink']['service_discovery_client']['url']}"
   owner node['flink']['user']
   group node['hops']['group']
