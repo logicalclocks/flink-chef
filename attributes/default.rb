@@ -14,6 +14,7 @@ default['flink']['base_dir']                         = "#{node['flink']['dir']}/
 default['flink']['home']                             = "#{node['flink']['dir']}/flink-#{node['flink']['version']}"
 default['flink']['url']                              = node['download_url'] + "/flink-" + node['flink']['version'] + "-bin" + "-scala_" + node['flink']['scala_version'] + ".tgz"
 default['flink']['conf_dir']                         = "#{node['flink']['base_dir']}/conf"
+default['flink']['lib_dir']                          = "#{node['flink']['base_dir']}/lib"
 default['flink']['historyserver']['local_dir']       = "#{node['flink']['dir']}/flinkhistoryserver"
 default['flink']['historyserver']['remote_dir']      = "#{node['hops']['hdfs']['user_home']}/#{node['flink']['user']}/completed-jobs"
 default['flink']['historyserver']['logs']            = "#{node['flink']['historyserver']['local_dir']}/logs"
@@ -25,6 +26,9 @@ default['flink']['checksum']                         = ""
 default['flink']['beamjobserver_name']               = "beam-runners-flink-#{node['flink']['version_base']}-job-server-#{node['conda']['beam']['version']}.jar"
 default['flink']['beamjobserver_jar']['url']         = "#{node['download_url']}/beam/#{node['conda']['beam']['version']}/#{node['flink']['beamjobserver_name']}"
 default['flink']['beam_boot']['url']                 = "#{node['download_url']}/beam/#{node['conda']['beam']['version']}/boot"
+# Custom shaded version of service-discovery-client that excludes jackson from shading
+default['flink']['service_discovery_client']['name'] = "service-discovery-client-0.5-SNAPSHOT.jar"
+default['flink']['service_discovery_client']['url']  = "#{node['download_url']}/beam/#{node['conda']['beam']['version']}/#{node['flink']['service_discovery_client']['name']}"
 
 default['flink']['mode']                             = "BATCH"
 default['flink']['jobmanager']['web_port']           = 8088

@@ -16,7 +16,7 @@ ruby_block "hadoop_glob" do
   action :create
 end
 
-template "#{node['flink']['conf_dir']}/sdk_worker.sh" do
+template "#{node['flink']['lib_dir']}/sdk_worker.sh" do
     source "sdk_worker.sh.erb"
     owner node['flink']['user']
     group node['hops']['group']

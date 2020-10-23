@@ -135,7 +135,7 @@ template "#{node['flink']['base_dir']}/conf/log4j.properties" do
     mode 0644
 end
 
-remote_file "#{node['flink']['conf_dir']}/boot" do
+remote_file "#{node['flink']['lib_dir']}/boot" do
     source "#{node['flink']['beam_boot']['url']}"
     owner node['flink']['user']
     group node['hops']['group']
@@ -143,8 +143,16 @@ remote_file "#{node['flink']['conf_dir']}/boot" do
     action :create
 end
 
-remote_file "#{node['flink']['conf_dir']}/#{node['flink']['beamjobserver_name']}" do
+remote_file "#{node['flink']['lib_dir']}/#{node['flink']['beamjobserver_name']}" do
   source "#{node['flink']['beamjobserver_jar']['url']}"
+  owner node['flink']['user']
+  group node['hops']['group']
+  mode "0755"
+  action :create
+end
+
+remote_file "#{node['flink']['lib_dir']}/#{node['flink']['service_discovery_client']['name']}" do
+  source "#{node['flink']['service_discovery_client']['url']}"
   owner node['flink']['user']
   group node['hops']['group']
   mode "0755"
