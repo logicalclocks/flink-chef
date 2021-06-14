@@ -73,6 +73,14 @@ directory node['flink']['dir']  do
   not_if { File.directory?("#{node['flink']['dir']}") }
 end
 
+directory node['data']['dir'] do
+  owner 'root'
+  group 'root'
+  mode '0775'
+  action :create
+  not_if { ::File.directory?(node['data']['dir']) }
+end
+
 directory node['flink']['historyserver']['local_dir']  do
   owner node['flink']['user']
   group node['hops']['group']
@@ -81,12 +89,30 @@ directory node['flink']['historyserver']['local_dir']  do
   not_if { File.directory?("#{node['flink']['historyserver']['local_dir']}") }
 end
 
-directory node['flink']['historyserver']['logs']  do
+directory node['flink_hs']['data_volume']['logs_dir'] do
   owner node['flink']['user']
   group node['hops']['group']
-  mode "700"
-  action :create
-  not_if { File.directory?("#{node['flink']['historyserver']['logs']}") }
+  mode '0700'
+  recursive true
+end
+
+bash 'Move Flink history server logs to data volume' do
+  user 'root'
+  code <<-EOH
+    set -e
+    mv -f #{node['flink']['historyserver']['logs']}/* #{node['flink_hs']['data_volume']['logs_dir']}
+    rm -rf #{node['flink']['historyserver']['logs']}
+  EOH
+  only_if { conda_helpers.is_upgrade }
+  only_if { File.directory?(node['flink']['historyserver']['logs'])}
+  not_if { File.symlink?(node['flink']['historyserver']['logs'])}
+end
+
+link node['flink']['historyserver']['logs'] do
+  owner node['flink']['user']
+  group node['hops']['group']
+  mode '0700'
+  to node['flink_hs']['data_volume']['logs_dir']
 end
 
 directory node['flink']['historyserver']['tmp']  do
@@ -97,6 +123,12 @@ directory node['flink']['historyserver']['tmp']  do
   not_if { File.directory?("#{node['flink']['historyserver']['tmp']}") }
 end
 
+directory node['flink']['data_volume']['logs_dir'] do
+  owner node['flink']['user']
+  group node['hops']['group']
+  mode '0750'
+  recursive true
+end
 
 bash "unpack_flink" do
     user "root"
@@ -114,6 +146,31 @@ bash "unpack_flink" do
     not_if { ::File.exists?( "#{node['flink']['home']}/bin/jobmanager" ) }
 end
 
+# Small hack to create the symlink below. Logs directory already exist in the tarball
+directory node['flink']['logs_dir'] do
+  recursive true
+  action :delete
+  not_if { conda_helpers.is_upgrade }
+end
+
+bash 'Move Flink logs to data volume' do
+  user 'root'
+  code <<-EOH
+    set -e
+    mv -f #{node['flink']['logs_dir']}/* #{node['flink']['data_volume']['logs_dir']}
+    rm -rf #{node['flink']['logs_dir']}
+  EOH
+  only_if { conda_helpers.is_upgrade }
+  only_if { File.directory?(node['flink']['logs_dir'])}
+  not_if { File.symlink?(node['flink']['logs_dir'])}
+end
+
+link node['flink']['logs_dir'] do
+  owner node['flink']['user']
+  group node['hops']['group']
+  mode '0750'
+  to node['flink']['data_volume']['logs_dir']
+end
 
 file "#{node['flink']['home']}/conf/flink-conf.yaml" do 
   owner node['flink']['user']

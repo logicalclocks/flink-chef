@@ -15,6 +15,14 @@ default['flink']['home']                             = "#{node['flink']['dir']}/
 default['flink']['url']                              = node['download_url'] + "/flink-" + node['flink']['version'] + "-bin" + "-scala_" + node['flink']['scala_version'] + ".tgz"
 default['flink']['conf_dir']                         = "#{node['flink']['base_dir']}/conf"
 default['flink']['lib_dir']                          = "#{node['flink']['base_dir']}/lib"
+default['flink']['logs_dir']                         = "#{node['flink']['base_dir']}/log"
+
+# Data volume directories
+default['flink']['data_volume']['root_dir']          = "#{node['data']['dir']}/flink"
+default['flink']['data_volume']['logs_dir']          = "#{node['flink']['data_volume']['root_dir']}/log"
+default['flink_hs']['data_volume']['root_dir']       = "#{node['data']['dir']}/flinkhistoryserver"
+default['flink_hs']['data_volume']['logs_dir']       = "#{node['flink_hs']['data_volume']['root_dir']}/logs"
+
 default['flink']['historyserver']['local_dir']       = "#{node['flink']['dir']}/flinkhistoryserver"
 default['flink']['historyserver']['remote_dir']      = "#{node['hops']['hdfs']['user_home']}/#{node['flink']['user']}/completed-jobs"
 default['flink']['historyserver']['logs']            = "#{node['flink']['historyserver']['local_dir']}/logs"
