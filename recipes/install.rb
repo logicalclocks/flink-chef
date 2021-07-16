@@ -158,6 +158,17 @@ bash 'Move Flink logs to data volume' do
   code <<-EOH
     set -e
     mv -f #{node['flink']['logs_dir']}/* #{node['flink']['data_volume']['logs_dir']}
+  EOH
+  only_if { conda_helpers.is_upgrade }
+  only_if { File.directory?(node['flink']['logs_dir'])}
+  not_if { File.symlink?(node['flink']['logs_dir'])}
+  not_if { Dir.empty?(node['flink']['logs_dir'])}
+end
+
+bash 'Delete old Flink logs' do
+  user 'root'
+  code <<-EOH
+    set -e
     rm -rf #{node['flink']['logs_dir']}
   EOH
   only_if { conda_helpers.is_upgrade }
