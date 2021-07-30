@@ -81,6 +81,18 @@ directory node['data']['dir'] do
   not_if { ::File.directory?(node['data']['dir']) }
 end
 
+directory node['flink']['data_volume']['root_dir'] do
+  owner node['flink']['user']
+  group node['hops']['group']
+  mode '0700'
+end
+
+directory node['flink_hs']['data_volume']['root_dir'] do
+  owner node['flink']['user']
+  group node['hops']['group']
+  mode '0700'
+end
+
 directory node['flink']['historyserver']['local_dir']  do
   owner node['flink']['user']
   group node['hops']['group']
@@ -93,7 +105,6 @@ directory node['flink_hs']['data_volume']['logs_dir'] do
   owner node['flink']['user']
   group node['hops']['group']
   mode '0700'
-  recursive true
 end
 
 bash 'Move Flink history server logs to data volume' do
@@ -127,7 +138,6 @@ directory node['flink']['data_volume']['logs_dir'] do
   owner node['flink']['user']
   group node['hops']['group']
   mode '0750'
-  recursive true
 end
 
 bash "unpack_flink" do
