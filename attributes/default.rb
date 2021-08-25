@@ -2,6 +2,7 @@ include_attribute "kagent"
 include_attribute "hops"
 
 default['flink']['user']                             = node['install']['user'].empty? ? "flink" : node['install']['user']
+default['flink']['user_id']                          = '1510'
 default['flink']['user-home']                        = "/home/#{node['flink']['user']}"
 
 default['flink']['version_base']                     = "1.9"

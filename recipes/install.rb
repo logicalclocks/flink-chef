@@ -9,6 +9,7 @@ end
 
 user node['hops']['hdfs']['user'] do
   home node['hops']['hdfs']['user-home']
+  uid node['hops']['hdfs']['user_id']
   gid node['hops']['group']
   system true
   shell "/bin/bash"
@@ -18,14 +19,16 @@ user node['hops']['hdfs']['user'] do
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
-group node['hops']['hdfs']['user'] do
+group node['hops']['hdfs']['group'] do
+  gid node['hops']['hdfs']['group_id']
   action :create
-  not_if "getent group #{node['hops']['hdfs']['user']}"
+  not_if "getent group #{node['hops']['hdfs']['group']}"
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
 user node['flink']['user'] do
   action :create
+  uid node['flink']['user_id']
   gid node['hops']['group']
   manage_home true
   home node['flink']['user-home']

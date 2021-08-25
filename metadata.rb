@@ -27,6 +27,10 @@ attribute "flink/user",
           :description => "Username to run flink jobmgr/task as",
           :type => 'string'
 
+attribute "flink/user_id",
+          :description => "flink used id. Default: 1510",
+          :type => 'string'
+
 attribute "flink/user-home",
           :description => "Home directory of flink user",
           :type => 'string'
