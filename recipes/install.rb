@@ -19,10 +19,10 @@ user node['hops']['hdfs']['user'] do
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
-group node['hops']['hdfs']['group'] do
-  gid node['hops']['hdfs']['group_id']
+group node['hops']['group'] do
+  gid node['hops']['group_id']
   action :create
-  not_if "getent group #{node['hops']['hdfs']['group']}"
+  not_if "getent group #{node['hops']['group']}"
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
