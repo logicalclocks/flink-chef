@@ -4,7 +4,7 @@ maintainer_email "theo@logicalclocks.com"
 license          "Apache v 2.0"
 description      'Installs/Configures Standalone Apache Flink'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "3.0.0"
+version          "2.4.0"
 source_url       'https://github.com/hopshadoop/flink-chef'
 
 recipe           "install", "Installs Apache Flink"
