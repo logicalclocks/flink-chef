@@ -16,6 +16,16 @@
 # limitations under the License.
 ################################################################################
 
+#==============================================================================
+# job manager config
+##==============================================================================
+jobmanager.memory.heap.size: <%= node['flink']['jobmanager']['heap_mbs'] %>mb
+
+#==============================================================================
+## Task manager config
+##==============================================================================
+taskmanager.memory.task.heap.size: <%= node['flink']['taskmanager']['heap_mbs'] %>mb
+taskmanager.memory.managed.size: <%= node['flink']['taskmanager']['managed_mbs'] %>mb
 
 #==============================================================================
 # Queryable state
@@ -67,9 +77,11 @@ taskmanager.network.numberOfBuffers: <%= node['flink']['taskmanager']['network_n
 # If not specified, the system-specific Java temporary directory (java.io.tmpdir
 # property) is taken.
 #
-io.tmp.dirs: ${LOCAL_DIRS}
-web.upload.dir: ${LOCAL_DIRS}
-web.tmpdir: ${LOCAL_DIRS}
+
+# TODO (Davit): disabling this as flink now seems to get `${LOCAL_DIRS}` as a string in config file
+#io.tmp.dirs: ${LOCAL_DIRS}
+#web.upload.dir: ${LOCAL_DIRS}
+#web.tmpdir: ${LOCAL_DIRS}
 
 #==============================================================================
 # History server
@@ -84,4 +96,3 @@ historyserver.archive.fs.dir: hdfs://<%= node['flink']['historyserver']['remote_
 historyserver.web.tmpdir: <%= node['flink']['historyserver']['tmp'] %>
 
 jobmanager.archive.fs.dir: hdfs://<%= node['flink']['historyserver']['remote_dir'] %>
-
