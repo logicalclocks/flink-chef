@@ -216,14 +216,6 @@ template "#{node['flink']['base_dir']}/conf/log4j.properties" do
     mode 0644
 end
 
-remote_file "#{node['flink']['lib_dir']}/#{node['flink']['service_discovery_client']['name']}" do
-  source "#{node['flink']['service_discovery_client']['url']}"
-  owner node['flink']['user']
-  group node['hops']['group']
-  mode "0755"
-  action :create
-end
-
 link "#{node['flink']['home']}/flink.jar" do
     owner node['flink']['user']
     group node['hops']['group']
