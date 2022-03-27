@@ -5,8 +5,8 @@ default['flink']['user']                             = node['install']['user'].e
 default['flink']['user_id']                          = '1510'
 default['flink']['user-home']                        = "/home/#{node['flink']['user']}"
 
-default['flink']['version_base']                     = "1.9"
-default['flink']['version_bugfix']                   = "2.1"
+default['flink']['version_base']                     = "1.14"
+default['flink']['version_bugfix']                   = "3.0"
 default['flink']['version']                          = node['flink']['version_base'] + "." + node['flink']['version_bugfix']
 default['flink']['scala_version']                    = "2.11"
 
@@ -32,17 +32,12 @@ default['flink']['historyserver']['environment']     = "#{node['flink']['history
 
 
 default['flink']['checksum']                         = ""
-default['flink']['beamjobserver_name']               = "beam-runners-flink-#{node['flink']['version_base']}-job-server-#{node['conda']['beam']['version']}.jar"
-default['flink']['beamjobserver_jar']['url']         = "#{node['download_url']}/beam/#{node['conda']['beam']['version']}/#{node['flink']['beamjobserver_name']}"
-default['flink']['beam_boot']['url']                 = "#{node['download_url']}/beam/#{node['conda']['beam']['version']}/boot"
-# Custom shaded version of service-discovery-client that excludes jackson from shading
-default['flink']['service_discovery_client']['name'] = "service-discovery-client-0.5-SNAPSHOT.jar"
-default['flink']['service_discovery_client']['url']  = "#{node['download_url']}/beam/#{node['conda']['beam']['version']}/#{node['flink']['service_discovery_client']['name']}"
 
 default['flink']['mode']                             = "BATCH"
 default['flink']['jobmanager']['web_port']           = 8088
 default['flink']['jobmanager']['heap_mbs']           = 256
 default['flink']['taskmanager']['heap_mbs']          = 512
+default['flink']['taskmanager']['managed_mbs']       = 512
 default['flink']['historyserver']['port']            = 29183
 
 default['flink']['taskmanager']['num_taskslots']     = node['cpu']['total']

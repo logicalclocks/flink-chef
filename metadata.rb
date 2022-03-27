@@ -87,8 +87,3 @@ attribute "flink/historyserver/tmp",
 attribute "flink/historyserver/port",
           :description => "Port of flink history server web UI",
           :type => 'string'
-
-#Beam
-attribute "beamjobserver_jar/url",
-          :description => "Download beam flink job server url",
-          :type => "string"
