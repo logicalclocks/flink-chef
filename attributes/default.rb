@@ -29,7 +29,8 @@ default['flink']['historyserver']['remote_dir']      = "#{node['hops']['hdfs']['
 default['flink']['historyserver']['logs']            = "#{node['flink']['historyserver']['local_dir']}/logs"
 default['flink']['historyserver']['tmp']             = "#{node['flink']['historyserver']['local_dir']}/tmp"
 default['flink']['historyserver']['environment']     = "#{node['flink']['historyserver']['local_dir']}/historyserver.env"
-
+default['flink']['historyserver']['xmx']             = "1g"
+default['flink']['historyserver']['port']            = 29183
 
 default['flink']['checksum']                         = ""
 
@@ -38,7 +39,6 @@ default['flink']['jobmanager']['web_port']           = 8088
 default['flink']['jobmanager']['heap_mbs']           = 256
 default['flink']['taskmanager']['heap_mbs']          = 512
 default['flink']['taskmanager']['managed_mbs']       = 512
-default['flink']['historyserver']['port']            = 29183
 
 default['flink']['taskmanager']['num_taskslots']     = node['cpu']['total']
 default['flink']['parallelization']['degree']        = node['cpu']['total']

@@ -87,3 +87,7 @@ attribute "flink/historyserver/tmp",
 attribute "flink/historyserver/port",
           :description => "Port of flink history server web UI",
           :type => 'string'
+
+attribute "flink/historyserver/xmx",
+          :description => "JVM Xmx configuration for flink historyserver (default: 1g)",
+          :type => 'string'
