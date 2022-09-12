@@ -90,4 +90,6 @@ historyserver.archive.fs.dir: hdfs://<%= node['flink']['historyserver']['remote_
 
 historyserver.web.tmpdir: <%= node['flink']['historyserver']['tmp'] %>
 
+env.java.opts.historyserver: "-Xmx<%= node['flink']['historyserver']['xmx'] %>"
+
 jobmanager.archive.fs.dir: hdfs://<%= node['flink']['historyserver']['remote_dir'] %>
