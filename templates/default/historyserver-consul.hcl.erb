@@ -1,0 +1,8 @@
+service {
+    id = "flink/historyserver"
+    name = "flink"
+    tags = [
+        "historyserver"
+    ]
+    port = <%= node['flink']['historyserver']['port'] %> 
+}
