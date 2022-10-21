@@ -100,7 +100,7 @@ end
 if service_discovery_enabled()
   # Register historyserver with Consul
   consul_service "Registering historyserver with Consul" do
-    service_definition "historyserver-consul.hcl.erb"
+    service_definition "flink-historyserver-consul.hcl.erb"
     action :register
   end
 end
