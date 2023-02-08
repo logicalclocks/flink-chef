@@ -96,3 +96,11 @@ cron 'restart_flink_historyserver' do
   day '*'
   month '*'
 end
+
+if service_discovery_enabled()
+  # Register historyserver with Consul
+  consul_service "Registering historyserver with Consul" do
+    service_definition "flink-historyserver-consul.hcl.erb"
+    action :register
+  end
+end
