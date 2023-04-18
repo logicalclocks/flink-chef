@@ -221,3 +221,31 @@ link "#{node['flink']['home']}/flink.jar" do
     group node['hops']['group']
     to "#{node['flink']['home']}/lib/flink-dist_" + node['flink']['scala_version'] + "-#{node['flink']['version']}.jar"
 end
+
+directory node['flink']['hopsworks_jars'] do
+  recursive true
+  action :delete
+  only_if { ::Dir.exist?(node['flink']['hopsworks_jars']) }
+end
+
+directory node['flink']['hopsworks_jars'] do
+  owner node['flink']['user']
+  group node['hops']['group']
+  mode "0755"
+  action :create
+end
+
+dependencies = [
+  node['flink']['hsfs']['url'],
+]
+
+for dep in dependencies do
+  file_name = File.basename(dep)
+  remote_file "#{node['flink']['hopsworks_jars']}/#{file_name}" do
+    source dep
+    owner node['flink']['user']
+    group node['hops']['group']
+    mode "0644"
+    action :create
+  end
+end

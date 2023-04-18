@@ -6,7 +6,7 @@ default['flink']['user_id']                          = '1510'
 default['flink']['user-home']                        = "/home/#{node['flink']['user']}"
 
 default['flink']['version_base']                     = "1.14"
-default['flink']['version_bugfix']                   = "3.0"
+default['flink']['version_bugfix']                   = "3.1"
 default['flink']['version']                          = node['flink']['version_base'] + "." + node['flink']['version_bugfix']
 default['flink']['scala_version']                    = "2.11"
 
@@ -23,6 +23,9 @@ default['flink']['data_volume']['root_dir']          = "#{node['data']['dir']}/f
 default['flink']['data_volume']['logs_dir']          = "#{node['flink']['data_volume']['root_dir']}/log"
 default['flink_hs']['data_volume']['root_dir']       = "#{node['data']['dir']}/flinkhistoryserver"
 default['flink_hs']['data_volume']['logs_dir']       = "#{node['flink_hs']['data_volume']['root_dir']}/logs"
+
+# hsfs dependency directories
+default['flink']['hopsworks_jars']                       = "#{node['flink']['home']}/hopsworks-jars"
 
 default['flink']['historyserver']['local_dir']       = "#{node['flink']['dir']}/flinkhistoryserver"
 default['flink']['historyserver']['remote_dir']      = "#{node['hops']['hdfs']['user_home']}/#{node['flink']['user']}/completed-jobs"
@@ -44,3 +47,9 @@ default['flink']['taskmanager']['num_taskslots']     = node['cpu']['total']
 default['flink']['parallelization']['degree']        = node['cpu']['total']
 default['flink']['webclient_port']                   = 8888
 default['flink']['taskmanager']['network_num_buffers']  = 2048
+
+#
+# Featurestore dependencies
+#
+default['flink']['hsfs']['version']                  = node['install']['version']
+default['flink']['hsfs']['url']                      = "#{node['download_url']}/hsfs/#{node['flink']['hsfs']['version']}/hsfs-flink-#{node['flink']['hsfs']['version']}.jar"
