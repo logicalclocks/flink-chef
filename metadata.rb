@@ -63,6 +63,14 @@ attribute "flink/url",
           :description => "Set to the url from which to download flink.",
           :type => "string"
 
+attribute "flink/hsfs/version",
+          :description => "Version of the HSFS library",
+          :type => "string"
+
+attribute "flink/hsfs/url",
+          :description => "URL from where to download the HSFS library",
+          :type => "string"
+
 attribute "install/user",
           :description => "User to install the services as",
           :type => "string"
