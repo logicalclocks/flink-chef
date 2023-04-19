@@ -209,8 +209,8 @@ template "#{node['flink']['base_dir']}/conf/flink-conf.yaml" do
     mode 0775
 end
 
-template "#{node['flink']['base_dir']}/conf/log4j.properties" do
-    source "log4j.properties.erb"
+template "#{node['flink']['base_dir']}/conf/log4j2.properties" do
+    source "log4j2.properties.erb"
     owner node['flink']['user']
     group node['hops']['group']
     mode 0644
