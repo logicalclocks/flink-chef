@@ -6,7 +6,7 @@ default['flink']['user_id']                          = '1510'
 default['flink']['user-home']                        = "/home/#{node['flink']['user']}"
 
 default['flink']['version_base']                     = "1.14"
-default['flink']['version_bugfix']                   = "3.0"
+default['flink']['version_bugfix']                   = "3.1"
 default['flink']['version']                          = node['flink']['version_base'] + "." + node['flink']['version_bugfix']
 default['flink']['scala_version']                    = "2.11"
 
