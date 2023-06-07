@@ -6,7 +6,7 @@ default['flink']['user_id']                          = '1510'
 default['flink']['user-home']                        = "/home/#{node['flink']['user']}"
 
 default['flink']['version_base']                     = "1.17"
-default['flink']['version_bugfix']                   = "0.0"
+default['flink']['version_bugfix']                   = "1.0"
 default['flink']['version']                          = node['flink']['version_base'] + "." + node['flink']['version_bugfix']
 
 default['flink']['dir']                              = node['install']['dir'].empty? ? "/srv" : node['install']['dir']
