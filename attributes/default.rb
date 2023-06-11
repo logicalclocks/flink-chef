@@ -43,9 +43,3 @@ default['flink']['taskmanager']['num_taskslots']     = node['cpu']['total']
 default['flink']['parallelization']['degree']        = node['cpu']['total']
 default['flink']['webclient_port']                   = 8888
 default['flink']['taskmanager']['network_num_buffers']  = 2048
-
-#
-# Featurestore dependencies
-#
-default['flink']['hsfs']['version']                  = node['install']['version']
-default['flink']['hsfs']['url']                      = "#{node['download_url']}/hsfs/#{node['flink']['hsfs']['version']}/hsfs-flink-#{node['flink']['hsfs']['version']}.jar"
