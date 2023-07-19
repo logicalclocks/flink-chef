@@ -5,15 +5,14 @@ default['flink']['user']                             = node['install']['user'].e
 default['flink']['user_id']                          = '1510'
 default['flink']['user-home']                        = "/home/#{node['flink']['user']}"
 
-default['flink']['version_base']                     = "1.14"
-default['flink']['version_bugfix']                   = "3.1"
+default['flink']['version_base']                     = "1.17"
+default['flink']['version_bugfix']                   = "1.0"
 default['flink']['version']                          = node['flink']['version_base'] + "." + node['flink']['version_bugfix']
-default['flink']['scala_version']                    = "2.11"
 
 default['flink']['dir']                              = node['install']['dir'].empty? ? "/srv" : node['install']['dir']
 default['flink']['base_dir']                         = "#{node['flink']['dir']}/flink"
 default['flink']['home']                             = "#{node['flink']['dir']}/flink-#{node['flink']['version']}"
-default['flink']['url']                              = node['download_url'] + "/flink-" + node['flink']['version'] + "-bin" + "-scala_" + node['flink']['scala_version'] + ".tgz"
+default['flink']['url']                              = node['download_url'] + "/flink-" + node['flink']['version'] + "-bin" + ".tgz"
 default['flink']['conf_dir']                         = "#{node['flink']['base_dir']}/conf"
 default['flink']['lib_dir']                          = "#{node['flink']['base_dir']}/lib"
 default['flink']['logs_dir']                         = "#{node['flink']['base_dir']}/log"
