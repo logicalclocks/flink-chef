@@ -5,15 +5,15 @@ kagent_hopsify "Generate x.509" do
   not_if { node["kagent"]["enabled"] == "false" }
 end
 
-completed_jobs_dir = "#{node['flink']['historyserver']['remote_dir']}"
-
-hops_hdfs_directory completed_jobs_dir do
+if node["install"]["secondary_region"].casecmp?("false")
+  completed_jobs_dir = "#{node['flink']['historyserver']['remote_dir']}"
+  hops_hdfs_directory completed_jobs_dir do
     action :create_as_superuser
     owner node['flink']['user']
     group node['hops']['group']
     mode "1733"
+  end
 end
-
 
 deps = ""
 if exists_local("hops", "nn")
