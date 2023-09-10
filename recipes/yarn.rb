@@ -1,11 +1,13 @@
 
 home = node['hops']['hdfs']['user_home']
 
-hops_hdfs_directory "#{home}/#{node['flink']['user']}" do
-  action :create_as_superuser
-  owner node['flink']['user']
-  group node['hops']['group']
-  mode "1777"
+if node["install"]["secondary_region"].casecmp?("false")
+  hops_hdfs_directory "#{home}/#{node['flink']['user']}" do
+    action :create_as_superuser
+    owner node['flink']['user']
+    group node['hops']['group']
+    mode "1777"
+  end
 end
 
 ruby_block "hadoop_glob" do
